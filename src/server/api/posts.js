@@ -1,14 +1,13 @@
 import { v4 as uuidv4 } from "uuid"
-import fs from "fs"
+import saveJson from "./_helpers"
 
-/*------------ Posts Endpoints -----------------*/
-export function getAllPosts() {
-	const posts = require("./posts.json")
+function getAllPosts() {
+	const posts = require("../db/posts.json")
 
 	return posts
 }
 
-export function createPost({ title, author, description }) {
+function createPost({ title, author, description }) {
 	const posts = getAllPosts()
 
 	const newPost = {
@@ -25,7 +24,7 @@ export function createPost({ title, author, description }) {
 	return newPost
 }
 
-export function likePost(id, userId) {
+function likePost(id, userId) {
 	const posts = getAllPosts()
 
 	const post = posts.find((post) => post.id === id)
@@ -41,7 +40,7 @@ export function likePost(id, userId) {
 	return post
 }
 
-export function deletePost(id) {
+function deletePost(id) {
 	const posts = getAllPosts()
 
 	const postIndex = posts.findIndex((post) => post.id === id)
@@ -55,13 +54,10 @@ export function deletePost(id) {
 	saveJson("posts", posts)
 }
 
-/*------------ Helpers -----------------*/
-function saveJson(documentName, jsonObj) {
-	var jsonContent = JSON.stringify(jsonObj)
-	fs.writeFile(`./${documentName}.json`, jsonContent, "utf8", function (err) {
-		if (err) {
-			console.log("An error occured while writing JSON Object to File.")
-			return console.log(err)
-		}
-	})
+const posts = {
+	getAllPosts,
+	createPost,
+	likePost,
+	deletePost,
 }
+export default posts

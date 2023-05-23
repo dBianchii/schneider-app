@@ -1,19 +1,20 @@
-import { getAllPosts } from "./db/api"
+import { api } from "./server/api/apiRoot"
 import { useState } from "react"
 import { useParams } from "react-router-dom"
 
 export default function Home() {
-	const _posts = getAllPosts()
+	const [posts, setPosts] = useState(api.posts.getAllPosts())
 
 	const params = useParams()
 	const page = Number(params.page) || 0
-	const perPage = 6
+
+	const perPage = 9
+
 	const start = page * perPage
 	const end = start + perPage
-	const paginatedPosts = _posts.slice(start, end)
-	const totalPages = Math.ceil(_posts.length / perPage)
+	const paginatedPosts = posts.slice(start, end)
 
-	const [posts, setPosts] = useState(paginatedPosts)
+	const totalPages = Math.ceil(posts.length / perPage)
 
 	return (
 		<div>
@@ -24,151 +25,104 @@ export default function Home() {
 					</h4>
 
 					<div class="row">
-						{posts.map((post) => (
-							<div class="col-lg-4 col-md-12 mb-4">
-								<div class="card">
-									<div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-										<img src={post.image} class="img-fluid" alt="somethuigs" />
-										<a href="#!">
-											<div class="mask" style={{ "background-color": "rgba(251, 251, 251, 0.15);" }}></div>
-										</a>
+						{paginatedPosts.map((post, i) => (
+							<>
+								{i <= 2 && (
+									<div class="col-lg-4 col-md-12 mb-4" key={post.id}>
+										<PostCard image={post.image} id={post.id} title={post.title} description={post.description} />
 									</div>
-									<div class="card-body">
-										<h5 class="card-title">{post.title}</h5>
-										<p class="card-text">{post.content}</p>
-										<a href="#!" class="btn btn-primary">
-											Read
-										</a>
-									</div>
-								</div>
-							</div>
+								)}
+							</>
 						))}
-
-						<div class="col-lg-4 col-md-12 mb-4">
-							<div class="card">
-								<div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-									<img src="" class="img-fluid" alt="somethuigs" />
-									<a href="#!">
-										<div class="mask" style={{ "background-color": "rgba(251, 251, 251, 0.15);" }}></div>
-									</a>
-								</div>
-								<div class="card-body">
-									<h5 class="card-title">Post title</h5>
-									<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-									<a href="#!" class="btn btn-primary">
-										Read
-									</a>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-4 col-md-6 mb-4">
-							<div class="card">
-								<div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-									<img src="https://mdbootstrap.com/img/new/standard/nature/023.jpg" class="img-fluid" />
-									<a href="#!">
-										<div class="mask" style={{ "background-color": "rgba(251, 251, 251, 0.15)" }}></div>
-									</a>
-								</div>
-								<div class="card-body">
-									<h5 class="card-title">Post title</h5>
-									<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-									<a href="#!" class="btn btn-primary">
-										Read
-									</a>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-4 col-md-6 mb-4">
-							<div class="card">
-								<div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-									<img src="https://mdbootstrap.com/img/new/standard/nature/111.jpg" class="img-fluid" />
-									<a href="#!">
-										<div class="mask" style={{ "background-color": "rgba(251, 251, 251, 0.15)" }}></div>
-									</a>
-								</div>
-								<div class="card-body">
-									<h5 class="card-title">Post title</h5>
-									<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-									<a href="#!" class="btn btn-primary">
-										Read
-									</a>
-								</div>
-							</div>
-						</div>
 					</div>
 
 					<div class="row">
-						<div class="col-lg-4 col-md-12 mb-4">
-							<div class="card">
-								<div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-									<img src="https://mdbootstrap.com/img/new/standard/nature/002.jpg" class="img-fluid" />
-									<a href="#!">
-										<div class="mask" style={{ "background-color": "rgba(251, 251, 251, 0.15)" }}></div>
-									</a>
-								</div>
-								<div class="card-body">
-									<h5 class="card-title">Post title</h5>
-									<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-									<a href="#!" class="btn btn-primary">
-										Read
-									</a>
-								</div>
-							</div>
-						</div>
+						{paginatedPosts.map((post, i) => (
+							<>
+								{i >= 3 && i <= 5 && (
+									<div class="col-lg-4 col-md-12 mb-4" key={post.id}>
+										<PostCard image={post.image} id={post.id} title={post.title} description={post.description} />
+									</div>
+								)}
+							</>
+						))}
+					</div>
 
-						<div class="col-lg-4 col-md-6 mb-4">
-							<div class="card">
-								<div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-									<img src="https://mdbootstrap.com/img/new/standard/nature/022.jpg" class="img-fluid" />
-									<a href="#!">
-										<div class="mask" style={{ "background-color": "rgba(251, 251, 251, 0.15)" }}></div>
-									</a>
-								</div>
-								<div class="card-body">
-									<h5 class="card-title">Post title</h5>
-									<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-									<a href="#!" class="btn btn-primary">
-										Read
-									</a>
-								</div>
-							</div>
-						</div>
+					<div class="row">
+						{paginatedPosts.map((post, i) => (
+							<>
+								{i >= 6 && i <= 8 && (
+									<div class="col-lg-4 col-md-12 mb-4" key={post.id}>
+										<PostCard image={post.image} id={post.id} title={post.title} description={post.description} />
+									</div>
+								)}
+							</>
+						))}
 					</div>
 				</section>
-
-				<nav class="my-4" aria-label="...">
-					<ul class="pagination pagination-circle justify-content-center">
-						<li class="page-item">
-							<a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-								Previous
-							</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">
-								1
-							</a>
-						</li>
-						<li class="page-item active" aria-current="page">
-							<a class="page-link" href="#">
-								2 <span class="sr-only">(current)</span>
-							</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">
-								3
-							</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">
-								Next
-							</a>
-						</li>
-					</ul>
-				</nav>
+				<Pagination currentPage={page} totalPages={totalPages} />
 			</div>
-			<p>Ola sou Home</p>
+		</div>
+	)
+}
+
+function Pagination({ currentPage, totalPages }) {
+	const getPageLink = (page) => {
+		return `/page/${page}`
+	}
+
+	const renderPaginationItems = () => {
+		const paginationItems = []
+
+		for (let i = 0; i <= totalPages - 1; i++) {
+			paginationItems.push(
+				<li key={i} className={`page-item${currentPage === i ? " active" : ""}`}>
+					<a href={getPageLink(i)} className="page-link">
+						{i}
+						{currentPage === i && <span className="sr-only"> (atual)</span>}
+					</a>
+				</li>
+			)
+		}
+
+		return paginationItems
+	}
+
+	return (
+		<nav aria-label="Pagination">
+			<ul className="pagination pagination-circle justify-content-center">
+				<li className={`page-item${currentPage === 0 ? " disabled" : ""}`}>
+					<a href={getPageLink(currentPage - 1)} className="page-link" tabIndex="-1" aria-disabled={currentPage === 0 ? "true" : "false"}>
+						Previous
+					</a>
+				</li>
+				{renderPaginationItems()}
+				<li className={`page-item${currentPage === totalPages - 1 ? " disabled" : ""}`}>
+					<a href={getPageLink(currentPage + 1)} className="page-link" aria-disabled={currentPage === totalPages ? "true" : "false"}>
+						Next
+					</a>
+				</li>
+			</ul>
+		</nav>
+	)
+}
+
+function PostCard({ image, id, title, description }) {
+	return (
+		<div class="card">
+			<div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+				<img src={image} class="img-fluid" alt="somethuigs" />
+				<a href="#!">
+					<div class="mask" style={{ "background-color": "rgba(251, 251, 251, 0.15)" }}></div>
+				</a>
+			</div>
+			<div class="card-body">
+				<h5 class="card-title">{title}</h5>
+				<p class="card-text">{description}</p>
+				<a href={`/post/${id}`} class="btn btn-primary">
+					Read
+				</a>
+			</div>
 		</div>
 	)
 }
