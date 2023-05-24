@@ -1,5 +1,6 @@
 import fs from "fs"
-export default function saveJson(documentName, jsonObj) {
+
+export function saveJson(documentName, jsonObj) {
 	const jsonContent = JSON.stringify(jsonObj)
 
 	fs.writeFile(`./${documentName}.json`, jsonContent, "utf8", (err) => {

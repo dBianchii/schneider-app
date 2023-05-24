@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid"
-import saveJson from "./_helpers"
+import { saveJson } from "./_helpers"
 
 function getAllPosts() {
 	const posts = require("../db/posts.json")
