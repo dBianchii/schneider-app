@@ -8,6 +8,7 @@ import "./App.css"
 import { ActionButton, SecondaryButton } from "./components/button"
 import * as Avatar from "@radix-ui/react-avatar"
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu"
+import { CiLogout } from "react-icons/ci"
 const { useLocation } = require("react-router-dom")
 
 function App() {
@@ -83,32 +84,12 @@ function NavBar() {
 								</div>
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Portal>
-								<DropdownMenu.Content side={"bottom"} align="end" className="h-[400px] w-[200px] rounded-md bg-white shadow-md">
-									<DropdownMenu.Label />
-									<DropdownMenu.Item />
+								<DropdownMenu.Content side={"bottom"} align="end" className="w-[200px] rounded-md bg-white shadow-md">
+									<DropdownMenu.Item className="flex cursor-default select-none items-center rounded-md p-2 font-medium outline-none transition-colors hover:bg-gray-500 focus:bg-gray-50">
+										<CiLogout className="mr-2 h-4 w-4 text-slate-800" />
+										<span>Log Out</span>
+									</DropdownMenu.Item>
 
-									<DropdownMenu.Group>
-										<DropdownMenu.Item />
-									</DropdownMenu.Group>
-
-									<DropdownMenu.CheckboxItem>
-										<DropdownMenu.ItemIndicator />
-									</DropdownMenu.CheckboxItem>
-
-									<DropdownMenu.RadioGroup>
-										<DropdownMenu.RadioItem>
-											<DropdownMenu.ItemIndicator />
-										</DropdownMenu.RadioItem>
-									</DropdownMenu.RadioGroup>
-
-									<DropdownMenu.Sub>
-										<DropdownMenu.SubTrigger />
-										<DropdownMenu.Portal>
-											<DropdownMenu.SubContent />
-										</DropdownMenu.Portal>
-									</DropdownMenu.Sub>
-
-									<DropdownMenu.Separator />
 									<DropdownMenu.Arrow />
 								</DropdownMenu.Content>
 							</DropdownMenu.Portal>
