@@ -5,9 +5,19 @@
 		"title": "Meu post",
 		"description": "Meu conteúdo",
 		"createdAt": "2021-10-19T00:00:00.000Z",
-		"likes": [
+		"likes": ["d90e011f-d1ec-461c-897e-2f6038236e00"],
+		"comments": [
 			{
-				"id": "d90e011f-d1ec-461c-897e-2f6038236e00"
+				"id": "d90e011f-d1ec-461c-897e-2f6038236e00",
+				"authorId": "d90e011f-d1ec-461c-897e-2f6038236e00",
+				"content": "Meu comentário",
+				"createdAt": "2021-10-19T00:00:00.000Z"
+			},
+			{
+				"id": "d90e011f-d1ec-461c-897e-2f6038236e00",
+				"authorId": "d90e011f-d1ec-461c-897e-2f6038236e00",
+				"content": "Meu comentário 2",
+				"createdAt": "2021-10-19T00:00:00.000Z"
 			}
 		]
 	},

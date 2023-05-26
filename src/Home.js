@@ -1,9 +1,13 @@
 import { api } from "./server/api/apiRoot"
 import { useState } from "react"
 import { useParams } from "react-router-dom"
+import { AiOutlineHeart, AiFillHeart, AiOutlineComment } from "react-icons/ai"
+import { ActionButton } from "./components/button"
 
 export default function Home() {
 	const [posts, setPosts] = useState(api.posts.getAllPosts())
+
+	const session = api.session.getLoggedUser()
 
 	const params = useParams()
 	const page = Number(params.page) || 0
@@ -17,52 +21,16 @@ export default function Home() {
 	const totalPages = Math.ceil(posts.length / perPage)
 
 	return (
-		<div>
-			<div class="container">
-				<section class="text-center">
-					<h4 class="mb-5">
-						<strong>Latest posts</strong>
-					</h4>
-
-					<div class="row">
-						{paginatedPosts.map((post, i) => (
-							<>
-								{i <= 2 && (
-									<div class="col-lg-4 col-md-12 mb-4" key={post.id}>
-										<PostCard image={post.image} id={post.id} title={post.title} description={post.description} />
-									</div>
-								)}
-							</>
-						))}
-					</div>
-
-					<div class="row">
-						{paginatedPosts.map((post, i) => (
-							<>
-								{i >= 3 && i <= 5 && (
-									<div class="col-lg-4 col-md-12 mb-4" key={post.id}>
-										<PostCard image={post.image} id={post.id} title={post.title} description={post.description} />
-									</div>
-								)}
-							</>
-						))}
-					</div>
-
-					<div class="row">
-						{paginatedPosts.map((post, i) => (
-							<>
-								{i >= 6 && i <= 8 && (
-									<div class="col-lg-4 col-md-12 mb-4" key={post.id}>
-										<PostCard image={post.image} id={post.id} title={post.title} description={post.description} />
-									</div>
-								)}
-							</>
-						))}
-					</div>
-				</section>
-				<Pagination currentPage={page} totalPages={totalPages} />
+		<section className="space-y-6 p-10">
+			<h4 class="text-4xl font-bold text-gray-800">Últimos posts</h4>
+			<ActionButton>Criar post</ActionButton>
+			<div className="grid grid-cols-4 gap-4">
+				{paginatedPosts.map((post, i) => (
+					<PostCard key={post.id} post={post} />
+				))}
 			</div>
-		</div>
+			<Pagination currentPage={page} totalPages={totalPages} />
+		</section>
 	)
 }
 
@@ -76,10 +44,10 @@ function Pagination({ currentPage, totalPages }) {
 
 		for (let i = 0; i <= totalPages - 1; i++) {
 			paginationItems.push(
-				<li key={i} className={`page-item${currentPage === i ? " active" : ""}`}>
-					<a href={getPageLink(i)} className="page-link">
+				<li key={i}>
+					<a href={getPageLink(i)} className={`${currentPage === 0 && "pointer-events-none text-gray-500"} ml-0 border border-gray-300 bg-white px-3 py-2 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700`}>
 						{i}
-						{currentPage === i && <span className="sr-only"> (atual)</span>}
+						{currentPage === i && <span> (atual)</span>}
 					</a>
 				</li>
 			)
@@ -89,16 +57,16 @@ function Pagination({ currentPage, totalPages }) {
 	}
 
 	return (
-		<nav aria-label="Pagination">
-			<ul className="pagination pagination-circle justify-content-center">
-				<li className={`page-item${currentPage === 0 ? " disabled" : ""}`}>
-					<a href={getPageLink(currentPage - 1)} className="page-link" tabIndex="-1" aria-disabled={currentPage === 0 ? "true" : "false"}>
+		<nav aria-label="Pagination" className="mt-4 text-center">
+			<ul className="inline-flex -space-x-px">
+				<li>
+					<a href={getPageLink(currentPage - 1)} tabIndex="-1" className={`${currentPage === 0 && "pointer-events-none text-gray-500"} ml-0 rounded-l-lg border border-gray-300 bg-white px-3 py-2 leading-tight hover:bg-gray-100 disabled:opacity-75`}>
 						Previous
 					</a>
 				</li>
 				{renderPaginationItems()}
-				<li className={`page-item${currentPage === totalPages - 1 ? " disabled" : ""}`}>
-					<a href={getPageLink(currentPage + 1)} className="page-link" aria-disabled={currentPage === totalPages ? "true" : "false"}>
+				<li>
+					<a href={getPageLink(currentPage + 1)} tabIndex="-1" className={`${currentPage === 0 && "pointer-events-none text-gray-500"} ml-0 rounded-r-lg border border-gray-300 bg-white px-3 py-2 leading-tight hover:bg-gray-100 disabled:opacity-75`}>
 						Next
 					</a>
 				</li>
@@ -107,21 +75,32 @@ function Pagination({ currentPage, totalPages }) {
 	)
 }
 
-function PostCard({ image, id, title, description }) {
+function PostCard({ post }) {
+	const user = api.session.getLoggedUser()
 	return (
-		<div class="card">
-			<div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-				<img src={image} class="img-fluid" alt="somethuigs" />
-				<a href="#!">
-					<div class="mask" style={{ "background-color": "rgba(251, 251, 251, 0.15)" }}></div>
+		<div class="max-w-sm rounded-lg border border-gray-200 bg-white shadow">
+			{post.image && (
+				<a href="/">
+					<img class="rounded-t-lg" src={post.image} alt="imagemDoPost" />
 				</a>
-			</div>
-			<div class="card-body">
-				<h5 class="card-title">{title}</h5>
-				<p class="card-text">{description}</p>
-				<a href={`/post/${id}`} class="btn btn-primary">
-					Read
+			)}
+
+			<div class="p-5">
+				<a href="/">
+					<h5 class="mb-2 text-xl font-bold tracking-tight text-gray-700">{post.title}</h5>
 				</a>
+				<p class="mb-3 text-base font-normal text-gray-600">{post.description}</p>
+				{/* <a href={`/post/${post.id}`} class="inline-flex items-center rounded-lg bg-schneider-green px-3 py-2 text-center text-sm font-medium text-white hover:bg-schneider-green/90 focus:outline-none focus:ring-4 focus:ring-blue-300">
+					Ler post
+					<svg aria-hidden="true" class="-mr-1 ml-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+					</svg>
+				</a> */}
+				<div className="mt-4 flex flex-row align-middle">
+					{user && post.likes.includes(user.id) ? <AiFillHeart className="h-8 w-8 text-red-500 hover:text-red-500/80" /> : <AiOutlineHeart className="h-8 w-8 hover:text-red-500/80" />}
+					{post.likes.length > 0 && <span>{post.likes.length}</span>}
+					<AiOutlineComment className={`ml-4 h-8 w-8 ${user && post.comments ? "text-gray-500" : ""}`} />
+				</div>
 			</div>
 		</div>
 	)
