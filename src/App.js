@@ -1,10 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { api } from "./server/api/apiRoot"
 import Login from "./login"
 import Home from "./Home"
 import Sobre from "./Sobre"
 import Post from "./Post"
 import "./App.css"
 import { ActionButton, SecondaryButton } from "./components/button"
+import * as Avatar from "@radix-ui/react-avatar"
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu"
 const { useLocation } = require("react-router-dom")
 
 function App() {
@@ -26,6 +29,7 @@ function App() {
 
 function NavBar() {
 	const location = useLocation()
+	const user = api.session.getLoggedUser()
 	const navItems = [
 		{
 			title: "Home",
@@ -40,7 +44,6 @@ function NavBar() {
 			href: "/login",
 		},
 	]
-	console.log(location.pathname)
 
 	return (
 		<nav className="border-gray-200 bg-slate-800">
@@ -67,10 +70,57 @@ function NavBar() {
 					</ul>
 				</div>
 				<div className={`flex flex-row`}>
-					<ActionButton isLink={true} href="/signIn">
-						Entrar
-					</ActionButton>
-					<SecondaryButton className={"ml-4"}>Cadastrar</SecondaryButton>
+					{user ? (
+						<DropdownMenu.Root>
+							<DropdownMenu.Trigger asChild>
+								<Avatar.Root className="bg-blackA3 inline-flex h-[45px] w-[45px] select-none items-center justify-center overflow-hidden rounded-full align-middle">
+									<Avatar.Image className="h-full w-full rounded-[inherit] object-cover" src="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80" alt="Colm Tuite" />
+									<Avatar.Fallback className="text-violet11 leading-1 flex h-full w-full items-center justify-center bg-white text-[15px] font-medium" delayMs={600}>
+										Avatar
+									</Avatar.Fallback>
+								</Avatar.Root>
+							</DropdownMenu.Trigger>
+							<DropdownMenu.Portal>
+								<DropdownMenu.Content side={"bottom"} align="end" className="h-[400px] w-[200px] rounded-md bg-white shadow-md">
+									<DropdownMenu.Label />
+									<DropdownMenu.Item />
+
+									<DropdownMenu.Group>
+										<DropdownMenu.Item />
+									</DropdownMenu.Group>
+
+									<DropdownMenu.CheckboxItem>
+										<DropdownMenu.ItemIndicator />
+									</DropdownMenu.CheckboxItem>
+
+									<DropdownMenu.RadioGroup>
+										<DropdownMenu.RadioItem>
+											<DropdownMenu.ItemIndicator />
+										</DropdownMenu.RadioItem>
+									</DropdownMenu.RadioGroup>
+
+									<DropdownMenu.Sub>
+										<DropdownMenu.SubTrigger />
+										<DropdownMenu.Portal>
+											<DropdownMenu.SubContent />
+										</DropdownMenu.Portal>
+									</DropdownMenu.Sub>
+
+									<DropdownMenu.Separator />
+									<DropdownMenu.Arrow />
+								</DropdownMenu.Content>
+							</DropdownMenu.Portal>
+						</DropdownMenu.Root>
+					) : (
+						<>
+							<ActionButton isLink={true} href="/signIn">
+								Entrar
+							</ActionButton>
+							<SecondaryButton isLink={true} href="/signIn" className={"ml-4"}>
+								Cadastrar
+							</SecondaryButton>
+						</>
+					)}
 				</div>
 			</div>
 		</nav>
