@@ -73,12 +73,14 @@ function NavBar() {
 					{user ? (
 						<DropdownMenu.Root>
 							<DropdownMenu.Trigger asChild>
-								<Avatar.Root className="bg-blackA3 inline-flex h-[45px] w-[45px] select-none items-center justify-center overflow-hidden rounded-full align-middle">
-									<Avatar.Image className="h-full w-full rounded-[inherit] object-cover" src="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80" alt="Colm Tuite" />
-									<Avatar.Fallback className="text-violet11 leading-1 flex h-full w-full items-center justify-center bg-white text-[15px] font-medium" delayMs={600}>
-										Avatar
-									</Avatar.Fallback>
-								</Avatar.Root>
+								<div className="rounded-full ring-4 ring-offset-2 transition-all hover:ring-schneider-green">
+									<Avatar.Root className="inline-flex h-[45px] w-[45px] select-none items-center justify-center overflow-hidden rounded-full align-middle">
+										<Avatar.Image className="transition-color h-full w-full rounded-[inherit] object-cover " src={user.image ?? ""} alt="Colm Tuite" />
+										<Avatar.Fallback className="leading-1 flex h-full w-full items-center justify-center bg-white text-[15px] font-medium text-schneider-green" delayMs={600}>
+											<img alt="schneider-avatar" src={"https://geheugenvanoost.amsterdam/image/2019/3/28/custom_avatar_oost.png%28%29%28A1AA9718B0A7004BA9DA7BBE5B7A6C4C%29.jpg"} />
+										</Avatar.Fallback>
+									</Avatar.Root>
+								</div>
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Portal>
 								<DropdownMenu.Content side={"bottom"} align="end" className="h-[400px] w-[200px] rounded-md bg-white shadow-md">
