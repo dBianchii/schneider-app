@@ -4,6 +4,7 @@ import Home from "./Home"
 import Sobre from "./Sobre"
 import Post from "./Post"
 import "./App.css"
+import { ActionButton } from "./components/button"
 const { useLocation } = require("react-router-dom")
 
 function App() {
@@ -63,29 +64,13 @@ function NavBar() {
 								</a>
 							</li>
 						))}
-						{/* <li>
-								<a href="/" className="block py-2 pl-3 pr-4 bg-blue-700 rounded md:bg-transparent md:p-0 text-white md:text-blue-500" aria-current="page">
-									Home
-								</a>
-							</li>
-							<li>
-								<a href="/sobrenos" className="block py-2 pl-3 pr-4 rounded  md:border-0  md:p-0 text-white md:hover:text-blue-500 hover:bg-gray-700 hover:text-white md:hover:bg-transparent">
-									About
-								</a>
-							</li>
-							<li>
-								<a href="/" className="block py-2 pl-3 pr-4 rounded md:border-0 md:p-0 text-white md:hover:text-blue-500 hover:bg-gray-700 hover:text-white md:hover:bg-transparent">
-									Services
-								</a>
-							</li>
-							<li>
-								<a href="/contact" className="block py-2 pl-3 pr-4 rounded md:border-0 md:p-0 text-white md:hover:text-blue-500 hover:bg-gray-700 hover:text-white md:hover:bg-transparent">
-									Contact
-								</a>
-							</li> */}
 					</ul>
 				</div>
-				<></>
+				<div className={`flex flex-row`}>
+					<ActionButton isLink={true} href="/signIn">
+						SignIn
+					</ActionButton>
+				</div>
 			</div>
 		</nav>
 	)
