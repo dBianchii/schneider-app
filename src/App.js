@@ -11,7 +11,11 @@ import { setLocalStorageData } from "./server/db/setLocalStorageData"
 function App() {
 	useEffect(() => {
 		const ran = localStorage.getItem("ranSetLocalStorageData")
-		if (!ran) setLocalStorageData() && localStorage.setItem("ranSetLocalStorageData", "true")
+		if (!ran) {
+			setLocalStorageData()
+			localStorage.setItem("ranSetLocalStorageData", "true")
+			window.location.reload()
+		}
 	})
 
 	return (

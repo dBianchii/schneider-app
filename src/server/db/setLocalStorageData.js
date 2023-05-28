@@ -1,21 +1,23 @@
+import { v4 as uuidv4 } from "uuid"
+
 const users = [
 	{
-		id: "d90e011f-d1ec-461c-897e-2f6038236e00",
+		id: uuidv4(),
 		image: "https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80",
 		name: "Gabriel",
 		posts: [
 			{
-				postId: "d90e011f-d1ec-461c-897e-2f6038236e00",
+				postId: uuidv4(),
 			},
 		],
 		password: "123456",
 	},
 	{
-		id: "d90e011f-d1ec-461c-897e-2f6038236e00",
+		id: uuidv4(),
 		name: "Lorenzo",
 		posts: [
 			{
-				postId: "d90e011f-d1ec-461c-897e-2f6038236e00",
+				postId: uuidv4(),
 			},
 		],
 		password: "1234563",
@@ -24,43 +26,39 @@ const users = [
 
 const posts = [
 	{
-		id: "d90e011f-d1ec-461c-897e-2f6038236e00",
-		authorId: "d90e011f-d1ec-461c-897e-2f6038236e00",
+		id: users[0].posts[0].postId,
+		authorId: users[0].id,
 		title: "Meu post",
 		description: "Meu conteúdo",
-		createdAt: "2021-10-19T00:00:00.000Z",
-		likes: ["d90e011f-d1ec-461c-897e-2f6038236e00"],
+		createdAt: new Date().toISOString(),
+		likes: [users[0].id, users[1].id],
 		comments: [
 			{
-				id: "d90e011f-d1ec-461c-897e-2f6038236e00",
-				authorId: "d90e011f-d1ec-461c-897e-2f6038236e00",
+				id: uuidv4(),
+				authorId: users[1].id,
 				content: "Meu comentário",
-				createdAt: "2021-10-19T00:00:00.000Z",
+				createdAt: new Date().toISOString(),
 			},
 			{
-				id: "d90e011f-d1ec-461c-897e-2f6038236e00",
-				authorId: "d90e011f-d1ec-461c-897e-2f6038236e00",
+				id: uuidv4(),
+				authorId: users[0].id,
 				content: "Meu comentário 2",
-				createdAt: "2021-10-19T00:00:00.000Z",
+				createdAt: new Date().toISOString(),
 			},
 		],
 	},
 	{
-		id: "d90e011f-d1ec-461c-897e-2f6038236e00",
-		authorId: "d90e011f-d1ec-461c-897e-2f6038236e00",
+		id: users[1].posts[0].postId,
+		authorId: users[1].id,
 		title: "Meu post 2",
 		description: "Meu conteúdo 2",
-		createdAt: "2021-10-19T00:00:00.000Z",
-		likes: [
-			{
-				id: "d90e011f-d1ec-461c-897e-2f6038236e00",
-			},
-		],
+		createdAt: new Date().toISOString(),
+		likes: [users[0].id],
 	},
 ]
 
 const session = {
-	loggedUser: "d90e011f-d1ec-461c-897e-2f6038236e00",
+	loggedUser: users[0].id,
 }
 
 export function setLocalStorageData() {
