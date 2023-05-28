@@ -11,7 +11,7 @@ function getAllPosts() {
 	})
 }
 
-function createPost({ title, author, description }) {
+async function createPost({ title, author, description, body }) {
 	const posts = getAllPosts()
 
 	const newPost = {
@@ -19,6 +19,7 @@ function createPost({ title, author, description }) {
 		title,
 		author,
 		description,
+		body,
 	}
 
 	posts.push(newPost)

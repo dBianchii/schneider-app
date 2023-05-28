@@ -5,9 +5,13 @@ import { AiOutlineHeart, AiFillHeart, AiOutlineComment } from "react-icons/ai"
 import { ActionButton } from "./components/button"
 import { SchneiderAvatar } from "./components/avatar"
 import { useNavigate } from "react-router-dom"
+import { CreatePostModal } from "./components/createPostModal"
 
 export default function Home() {
 	const [posts, setPosts] = useState(api.posts.getAllPosts())
+	const [isModalOpen, setIsModalOpen] = useState(true)
+
+	const session = api.session.getLoggedUser()
 
 	const params = useParams()
 	const page = Number(params.page) || 0
@@ -21,16 +25,20 @@ export default function Home() {
 	const totalPages = Math.ceil(posts.length / perPage)
 
 	return (
-		<section className="space-y-6 p-10">
-			<h4 className="text-4xl font-bold text-gray-800">Últimos posts</h4>
-			<ActionButton>Criar post</ActionButton>
-			<div className="grid grid-cols-4 gap-4">
-				{paginatedPosts.map((post, i) => (
-					<PostCard key={post.id} post={post} />
-				))}
-			</div>
-			<Pagination currentPage={page} totalPages={totalPages} />
-		</section>
+		<>
+			<section className="space-y-6 p-10">
+				<h4 className="text-4xl font-bold text-gray-800">Últimos posts</h4>
+				<ActionButton>Criar post</ActionButton>
+				<div className="grid grid-cols-4 gap-4">
+					{paginatedPosts.map((post, i) => (
+						<PostCard key={post.id} post={post} />
+					))}
+				</div>
+				<Pagination currentPage={page} totalPages={totalPages} />
+			</section>
+
+			{isModalOpen && <CreatePostModal />}
+		</>
 	)
 }
 
