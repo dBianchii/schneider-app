@@ -3,6 +3,7 @@ import Login from "./login"
 import Home from "./Home"
 import Sobre from "./Sobre"
 import Post from "./Post"
+import Usuario from "./Usuario"
 import "./App.css"
 import NavBar from "./components/navbar"
 import { useEffect } from "react"
@@ -28,6 +29,7 @@ function App() {
 					<Route path="/login" element={<Login />} />
 					<Route path="/sobre" element={<Sobre />} />
 					<Route path="/post/:post" element={<Post />} />
+					<Route path="/user/:userId" element={<Usuario />} />
 				</Routes>
 			</div>
 		</BrowserRouter>

@@ -32,13 +32,23 @@ function likePost(id, userId) {
 	const posts = getAllPosts()
 	const post = posts.find((post) => post.id === id)
 
+	if (!post.likes.includes(userId)) {
+		post.likes.push(userId)
+
+		localStorage.setItem("posts", JSON.stringify(posts))
+	}
+	return post
+}
+
+function unlikePost(id, userId) {
+	const posts = getAllPosts()
+	const post = posts.find((post) => post.id === id)
+
 	if (post.likes.includes(userId)) {
 		post.likes = post.likes.filter((like) => like !== userId)
-	} else {
-		post.likes.push(userId)
-	}
-	localStorage.setItem("posts", JSON.stringify(posts))
 
+		localStorage.setItem("posts", JSON.stringify(posts))
+	}
 	return post
 }
 
@@ -70,6 +80,7 @@ const posts = {
 	getAllPosts,
 	createPost,
 	likePost,
+	unlikePost,
 	deletePost,
 	getPost,
 }

@@ -80,6 +80,7 @@ function PostCard({ post }) {
 	const user = api.session.getLoggedUser()
 
 	const [liked, setLiked] = useState(post.likes.includes(user?.id))
+	const [likes, setLikes] = useState(post.likes.length)
 
 	return (
 		<a href={`/post/${post.id}`}>
@@ -93,21 +94,26 @@ function PostCard({ post }) {
 				<div className="p-5">
 					<h5 className="mb-2 text-xl font-bold tracking-tight text-gray-700">{post.title}</h5>
 					<p className="mb-3 text-base font-normal text-gray-600">{post.description}</p>
-					<div className="mt-4 flex flex-row">
+					<a className="mt-4 flex flex-row" href={`/user/${post.authorId}`}>
 						<SchneiderAvatar src={post.author?.image ?? ""} size={"sm"} />
 						<span className="ml-2 text-base text-gray-600">{post.author.name}</span>
-					</div>
+					</a>
 					<div
 						className="z-50 mt-4 flex flex-row"
 						onClick={(e) => {
 							e.preventDefault()
-							setLiked((prev) => !prev)
 							if (!user) return navigate("/login")
-							api.posts.likePost(post.id, user.id)
+							setLiked((prev) => {
+								const newPost = prev ? api.posts.unlikePost(post.id, user.id) : api.posts.likePost(post.id, user.id)
+
+								setLikes(newPost.likes.length)
+
+								return !prev
+							})
 						}}
 					>
 						{user && liked ? <AiFillHeart className="h-8 w-8 text-red-500 transition-colors hover:text-red-500/80" /> : <AiOutlineHeart className="h-8 w-8 transition-colors hover:text-red-500/80" />}
-						{post.likes.length > 0 && <span>{post.likes.length}</span>}
+						<span className="font-bold">{likes}</span>
 						<AiOutlineComment className={`ml-4 h-8 w-8 ${user && post.comments ? "text-gray-500" : ""}`} />
 					</div>
 				</div>
