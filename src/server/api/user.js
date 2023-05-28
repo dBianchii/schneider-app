@@ -1,7 +1,7 @@
 function getUser({ userId }) {
 	if (!userId) throw new Error("Usuario não encontrado")
 
-	const users = require("../db/users.json")
+	const users = JSON.parse(localStorage.getItem("users")) || []
 	const user = users.find((user) => user.id === userId)
 	if (!user) throw new Error("Nenhum usuario encontrado")
 
@@ -9,7 +9,7 @@ function getUser({ userId }) {
 }
 
 function getAllUsers() {
-	const users = localStorage.getItem("users")
+	const users = JSON.parse(localStorage.getItem("users")) || []
 	return users
 }
 
