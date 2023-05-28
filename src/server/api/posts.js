@@ -11,15 +11,17 @@ function getAllPosts() {
 	})
 }
 
-async function createPost({ title, author, description, body }) {
+async function createPost({ title, authorId, description, body }) {
+	if (!title || !authorId || !body) throw new Error("Missing fields")
 	const posts = getAllPosts()
 
 	const newPost = {
 		id: uuidv4(),
 		title,
-		author,
+		authorId,
 		description,
 		body,
+		likes: [],
 	}
 
 	posts.push(newPost)

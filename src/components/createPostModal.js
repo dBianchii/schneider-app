@@ -3,10 +3,10 @@ import { TextInput } from "./textInput"
 import { TextareaInput } from "./textareaInput"
 import { useForm } from "react-hook-form"
 import posts from "../../src/server/api/posts"
-import getLoggedUser from "../server/api/session"
+import { api } from "../server/api/apiRoot"
 
 export function CreatePostModal({ setIsModalOpen }) {
-	const user = getLoggedUser.getLoggedUser()
+	const user = api.session.getLoggedUser()
 	const {
 		handleSubmit,
 		register,
@@ -37,7 +37,7 @@ export function CreatePostModal({ setIsModalOpen }) {
 			})
 		}
 
-		posts.createPost(fields.title, user.id, fields.description, fields.body)
+		posts.createPost({ title: fields.title, authorId: user.id, description: fields.description, body: fields.body })
 
 		return console.log("Post criado com sucesso")
 	}
