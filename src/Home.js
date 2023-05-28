@@ -16,7 +16,7 @@ export default function Home() {
 	const params = useParams()
 	const page = Number(params.page) || 0
 
-	const perPage = 9
+	const perPage = 12
 
 	const start = page * perPage
 	const end = start + perPage
@@ -37,7 +37,7 @@ export default function Home() {
 				<Pagination currentPage={page} totalPages={totalPages} />
 			</section>
 
-			{isModalOpen && <CreatePostModal setIsModalOpen={setIsModalOpen} />}
+			{isModalOpen && <CreatePostModal setIsModalOpen={setIsModalOpen} setPosts={setPosts} />}
 		</>
 	)
 }
@@ -127,7 +127,7 @@ function Pagination({ currentPage, totalPages }) {
 				</li>
 				{renderPaginationItems()}
 				<li>
-					<a href={getPageLink(currentPage + 1)} tabIndex="-1" className={`${currentPage === 0 && "pointer-events-none text-gray-500 transition-colors"} ml-0 rounded-r-lg border border-gray-300 bg-white px-3 py-2 leading-tight hover:bg-gray-100 disabled:opacity-75`}>
+					<a href={getPageLink(currentPage + 1)} tabIndex="-1" className={`${currentPage === totalPages - 1 && "pointer-events-none text-gray-500 transition-colors"} ml-0 rounded-r-lg border border-gray-300 bg-white px-3 py-2 leading-tight hover:bg-gray-100 disabled:opacity-75`}>
 						Next
 					</a>
 				</li>

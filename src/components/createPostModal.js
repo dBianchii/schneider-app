@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 import posts from "../../src/server/api/posts"
 import { api } from "../server/api/apiRoot"
 
-export function CreatePostModal({ setIsModalOpen }) {
+export function CreatePostModal({ setIsModalOpen, setPosts }) {
 	const user = api.session.getLoggedUser()
 	const {
 		handleSubmit,
@@ -38,6 +38,8 @@ export function CreatePostModal({ setIsModalOpen }) {
 		}
 
 		posts.createPost({ title: fields.title, authorId: user.id, description: fields.description, body: fields.body })
+		setPosts(api.posts.getAllPosts())
+		setIsModalOpen(false)
 
 		return console.log("Post criado com sucesso")
 	}
