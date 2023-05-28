@@ -1,14 +1,13 @@
-import { saveJson } from "./_helpers.js"
 import { api } from "./apiRoot.js"
 
 function getLoggedUser() {
-	const session = require("../db/session.json")
+	const session = JSON.parse(localStorage.getItem("session")) || {}
 	const loggedUserId = session.loggedUser
 	if (!loggedUserId) {
 		return null
 	}
 
-	const users = require("../db/users.json")
+	const users = api.user.getAllUsers()
 	const loggedUser = users.find((user) => user.id === loggedUserId)
 
 	if (!loggedUser) {
@@ -28,7 +27,7 @@ function logUserIn(userId, password) {
 	const session = require("../db/session.json")
 	session.loggedUserId = userId.loggedUserId
 
-	saveJson("session", session)
+	localStorage.setItem("session", JSON.stringify(session))
 }
 
 const session = {

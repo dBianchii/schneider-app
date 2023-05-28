@@ -1,9 +1,8 @@
 import { v4 as uuidv4 } from "uuid"
-import { saveJson } from "./_helpers"
 import { api } from "../api/apiRoot"
 
 function getAllPosts() {
-	let posts = require("../db/posts.json")
+	let posts = JSON.parse(localStorage.getItem("posts")) || []
 
 	return posts.map((post) => {
 		const author = api.user.getUser({ userId: post.authorId })
@@ -24,7 +23,7 @@ function createPost({ title, author, description }) {
 
 	posts.push(newPost)
 
-	saveJson("posts", posts)
+	localStorage.setItem("posts", JSON.stringify(posts))
 
 	return newPost
 }
@@ -38,7 +37,7 @@ function likePost(id, userId) {
 	} else {
 		post.likes.push(userId)
 	}
-	saveJson("posts", posts)
+	localStorage.setItem("posts", JSON.stringify(posts))
 
 	return post
 }
@@ -54,7 +53,7 @@ function deletePost(id) {
 
 	posts.splice(postIndex, 1)
 
-	saveJson("posts", posts)
+	localStorage.setItem("posts", JSON.stringify(posts))
 }
 
 function getPost(id) {

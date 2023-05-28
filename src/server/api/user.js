@@ -8,7 +8,13 @@ function getUser({ userId }) {
 	return user
 }
 
+function getAllUsers() {
+	const users = localStorage.getItem("users")
+	return users
+}
+
 const user = {
 	getUser,
+	getAllUsers,
 }
 export default user
