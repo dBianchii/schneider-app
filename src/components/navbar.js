@@ -19,6 +19,7 @@ export default function NavBar() {
 		{
 			title: "Login",
 			href: "/login",
+			hidden: Boolean(user),
 		},
 	]
 
@@ -33,7 +34,10 @@ export default function NavBar() {
 					<ul className="mt-4 flex flex-col rounded-lg border border-gray-700 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0  md:p-0">
 						{navItems.map((item, i) => (
 							<li key={i}>
-								<a href={item.href} className={`block rounded py-2 pl-3 pr-4 transition-colors hover:bg-gray-700 hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-schneider-green ${location.pathname === item.href ? "text-schneider-green" : "text-white"}`}>
+								<a
+									href={item.href}
+									className={`${item.hidden && "hidden"} block rounded py-2 pl-3 pr-4 transition-colors hover:bg-gray-700 hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-schneider-green ${location.pathname === item.href ? "text-schneider-green" : "text-white"}`}
+								>
 									{item.title}
 								</a>
 							</li>
