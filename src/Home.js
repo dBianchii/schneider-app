@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom"
 import { AiOutlineHeart, AiFillHeart, AiOutlineComment } from "react-icons/ai"
 import { ActionButton } from "./components/button"
 import { SchneiderAvatar } from "./components/avatar"
+import { useNavigate } from "react-router-dom"
 
 export default function Home() {
 	const [posts, setPosts] = useState(api.posts.getAllPosts())
@@ -75,6 +76,7 @@ function Pagination({ currentPage, totalPages }) {
 }
 
 function PostCard({ post }) {
+	const navigate = useNavigate()
 	const user = api.session.getLoggedUser()
 
 	const [liked, setLiked] = useState(post.likes.includes(user.id))
@@ -100,6 +102,7 @@ function PostCard({ post }) {
 						onClick={(e) => {
 							e.preventDefault()
 							setLiked((prev) => !prev)
+							if (!user) return navigate("/login")
 							api.posts.likePost(post.id, user.id)
 						}}
 					>

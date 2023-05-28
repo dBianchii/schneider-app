@@ -24,7 +24,7 @@ function logUserIn(userId, password) {
 
 	if (user.password !== password) throw new Error("Invalid password")
 
-	const session = require("../db/session.json")
+	const session = JSON.parse(localStorage.getItem("session")) || {}
 	session.loggedUserId = userId.loggedUserId
 
 	localStorage.setItem("session", JSON.stringify(session))
