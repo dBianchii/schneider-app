@@ -9,7 +9,7 @@ import { CreatePostModal } from "./components/createPostModal"
 
 export default function Home() {
 	const [posts, setPosts] = useState(api.posts.getAllPosts())
-	const [isModalOpen, setIsModalOpen] = useState(true)
+	const [isModalOpen, setIsModalOpen] = useState(false)
 
 	const session = api.session.getLoggedUser()
 
@@ -28,7 +28,7 @@ export default function Home() {
 		<>
 			<section className="space-y-6 p-10">
 				<h4 className="text-4xl font-bold text-gray-800">Últimos posts</h4>
-				<ActionButton>Criar post</ActionButton>
+				<ActionButton onClick={setIsModalOpen}>Criar post</ActionButton>
 				<div className="grid grid-cols-4 gap-4">
 					{paginatedPosts.map((post, i) => (
 						<PostCard key={post.id} post={post} />
@@ -37,7 +37,7 @@ export default function Home() {
 				<Pagination currentPage={page} totalPages={totalPages} />
 			</section>
 
-			{isModalOpen && <CreatePostModal />}
+			{isModalOpen && <CreatePostModal setIsModalOpen={setIsModalOpen} />}
 		</>
 	)
 }
