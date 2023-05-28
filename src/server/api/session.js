@@ -2,7 +2,7 @@ import { api } from "./apiRoot.js"
 
 function getLoggedUser() {
 	const session = JSON.parse(localStorage.getItem("session")) || {}
-	const loggedUserId = session.loggedUser
+	const loggedUserId = session.loggedUserId
 	if (!loggedUserId) {
 		return null
 	}
@@ -30,8 +30,16 @@ function logUserIn(userId, password) {
 	localStorage.setItem("session", JSON.stringify(session))
 }
 
+function logUserOut() {
+	const session = JSON.parse(localStorage.getItem("session")) || {}
+	session.loggedUserId = null
+
+	localStorage.setItem("session", JSON.stringify(session))
+}
+
 const session = {
 	getLoggedUser,
 	logUserIn,
+	logUserOut,
 }
 export default session

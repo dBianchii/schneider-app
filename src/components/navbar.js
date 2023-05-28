@@ -56,7 +56,13 @@ export default function NavBar() {
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Portal>
 								<DropdownMenu.Content side={"bottom"} align="end" className="w-[200px] rounded-md bg-white shadow-md">
-									<DropdownMenu.Item className="flex cursor-default select-none items-center rounded-md p-2 font-medium outline-none transition-colors hover:bg-gray-500 focus:bg-gray-50">
+									<DropdownMenu.Item
+										onSelect={() => {
+											api.session.logUserOut()
+											window.location.reload()
+										}}
+										className="flex cursor-default select-none items-center rounded-md p-2 font-medium outline-none transition-colors hover:bg-gray-500 focus:bg-gray-50"
+									>
 										<CiLogout className="mr-2 h-4 w-4 text-slate-800" />
 										<span>Log Out</span>
 									</DropdownMenu.Item>

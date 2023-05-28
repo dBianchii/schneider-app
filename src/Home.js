@@ -1,5 +1,5 @@
 import { api } from "./server/api/apiRoot"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { AiOutlineHeart, AiFillHeart, AiOutlineComment } from "react-icons/ai"
 import { ActionButton } from "./components/button"
@@ -22,7 +22,7 @@ export default function Home() {
 
 	return (
 		<section className="space-y-6 p-10">
-			<h4 class="text-4xl font-bold text-gray-800">Últimos posts</h4>
+			<h4 className="text-4xl font-bold text-gray-800">Últimos posts</h4>
 			<ActionButton>Criar post</ActionButton>
 			<div className="grid grid-cols-4 gap-4">
 				{paginatedPosts.map((post, i) => (
@@ -79,20 +79,20 @@ function PostCard({ post }) {
 	const navigate = useNavigate()
 	const user = api.session.getLoggedUser()
 
-	const [liked, setLiked] = useState(post.likes.includes(user.id))
+	const [liked, setLiked] = useState(post.likes.includes(user?.id))
 
 	return (
 		<a href={`/post/${post.id}`}>
-			<div class="max-w-sm rounded-lg border border-gray-200 bg-white shadow">
+			<div className="max-w-sm rounded-lg border border-gray-200 bg-white shadow">
 				{post.image && (
 					<a href={`/post/${post.id}`}>
-						<img class="rounded-t-lg" src={post.image} alt="imagemDoPost" />
+						<img className="rounded-t-lg" src={post.image} alt="imagemDoPost" />
 					</a>
 				)}
 
-				<div class="p-5">
-					<h5 class="mb-2 text-xl font-bold tracking-tight text-gray-700">{post.title}</h5>
-					<p class="mb-3 text-base font-normal text-gray-600">{post.description}</p>
+				<div className="p-5">
+					<h5 className="mb-2 text-xl font-bold tracking-tight text-gray-700">{post.title}</h5>
+					<p className="mb-3 text-base font-normal text-gray-600">{post.description}</p>
 					<div className="mt-4 flex flex-row">
 						<SchneiderAvatar src={post.author?.image ?? ""} size={"sm"} />
 						<span className="ml-2 text-base text-gray-600">{post.author.name}</span>
@@ -106,7 +106,7 @@ function PostCard({ post }) {
 							api.posts.likePost(post.id, user.id)
 						}}
 					>
-						{liked ? <AiFillHeart className="h-8 w-8 text-red-500 transition-colors hover:text-red-500/80" /> : <AiOutlineHeart className="h-8 w-8 transition-colors hover:text-red-500/80" />}
+						{user && liked ? <AiFillHeart className="h-8 w-8 text-red-500 transition-colors hover:text-red-500/80" /> : <AiOutlineHeart className="h-8 w-8 transition-colors hover:text-red-500/80" />}
 						{post.likes.length > 0 && <span>{post.likes.length}</span>}
 						<AiOutlineComment className={`ml-4 h-8 w-8 ${user && post.comments ? "text-gray-500" : ""}`} />
 					</div>

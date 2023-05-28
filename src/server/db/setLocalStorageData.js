@@ -58,7 +58,7 @@ const posts = [
 ]
 
 const session = {
-	loggedUser: users[0].id,
+	loggedUserId: users[0].id,
 }
 
 export function setLocalStorageData() {
