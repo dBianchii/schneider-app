@@ -7,21 +7,22 @@ function getAllPosts() {
 	return posts
 }
 
-function createPost({ title, author, description }) {
-	const posts = getAllPosts()
+async function createPost({ title, author, description, body }) {
+  const posts = getAllPosts();
 
-	const newPost = {
-		id: uuidv4(),
-		title,
-		author,
-		description,
-	}
+  const newPost = {
+    id: uuidv4(),
+    title,
+    author,
+    description,
+    body,
+  };
 
-	posts.push(newPost)
+  posts.push(newPost);
 
-	saveJson("posts", posts)
+  saveJson("posts", posts);
 
-	return newPost
+  return newPost;
 }
 
 function likePost(id, userId) {
