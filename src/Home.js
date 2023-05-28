@@ -1,5 +1,5 @@
 import { api } from "./server/api/apiRoot"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useParams } from "react-router-dom"
 import { AiOutlineHeart, AiFillHeart, AiOutlineComment } from "react-icons/ai"
 import { ActionButton } from "./components/button"
