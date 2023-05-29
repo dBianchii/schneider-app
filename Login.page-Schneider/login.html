@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/login.css">
+
+        <title>Schneider Connect</title>
+
+    </head>
+    <body>
+            <div class="container">
+                <div class="caixa-esquerda">
+                    <h1>Schneider Connect, Come improve yourself !</h1>
+                </div>
+                <div class="caixa-direita"> 
+                    <div class="caixa-login">
+                        <img src="img/logo-real.png">
+                        <h1>Login</h1>
+                        <div class="inputs">
+                            <label for="usuario">Usuário</label>
+                            <input id="usuario" type="text" name="usuario" placeholder="Nome de usuário" >
+                        </div>
+                        <div class="inputs">
+                            <label for="senha">Senha</label>
+                            <input id="senha" type="password" name="senha" placeholder="Digite sua senha">
+                        </div>
+                        <small id="error"></small>
+                        <div class="esqueceu-senha">
+                            <p>Esqueceu sua senha ? <a href="#">Clique aqui</a></p>
+                        </div>
+                        <button id="botao-login" onclick="logar()">Login</button>
+                        <P>Ou continue com: </P>
+                        <div class="icones-login">
+                            <a href="#"><img src="img/logo-apple.png" alt="Apple"></a>
+                            <a href="#"><img src="img/logo-facebook.png" alt="Facebook"></a>
+                            <a href="#"><img src="img/logo-linkedin.png" alt="Linkedin"></a>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script src="js/js.js"></script>
+    </body>
+</html>
