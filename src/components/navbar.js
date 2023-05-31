@@ -71,10 +71,10 @@ export default function NavBar() {
 						</DropdownMenu.Root>
 					) : (
 						<div className="hidden md:block">
-							<ActionButton isLink={true} href="/signIn">
+							<ActionButton isLink={true} href="/login">
 								Entrar
 							</ActionButton>
-							<SecondaryButton isLink={true} href="/signIn" className={"ml-4"}>
+							<SecondaryButton isLink={true} href="/login" className={"ml-4"}>
 								Cadastrar
 							</SecondaryButton>
 						</div>
