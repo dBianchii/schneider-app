@@ -1,6 +1,4 @@
-import { useState } from "react"
 import { api } from "./server/api/apiRoot"
-import { TextInput } from "./components/textInput"
 import { ActionButton } from "./components/button"
 import { useForm } from "react-hook-form"
 import { EmailInput } from "./components/emailinput"
@@ -36,8 +34,16 @@ export default function Login() {
 				return setError(err.field, { message: err.message })
 			})
 		}
+		try {
+			api.session.logUserIn(fields.email, fields.password)
+		} catch (error) {
+			if (error.message === "Email não encontrado no sistema") {
+				setError("email", { message: error.message })
+			} else if (error.message === "Senha incorreta") setError("password", { message: error.message })
+			return errors
+		}
 
-		return console.log("Post criado com sucesso")
+		window.location.href = "/"
 	}
 
 	return (
@@ -45,8 +51,8 @@ export default function Login() {
 			<div className="flex w-full max-w-md flex-col items-center justify-center rounded-md bg-white px-4 py-8 shadow-md">
 				<h1 className="text-2xl font-bold text-gray-900">Login</h1>
 				<form className="mt-4 flex w-full flex-col" onSubmit={handleSubmit(onSubmit)}>
-					<EmailInput error={errors?.title} title="Email" register={{ ...register("email") }} />
-					<PasswordInput className={"mt-4"} error={errors?.title} title="Password" register={{ ...register("password") }} />
+					<EmailInput error={errors?.email} title="Email" register={{ ...register("email") }} />
+					<PasswordInput className={"mt-6"} error={errors?.password} title="Password" register={{ ...register("password") }} />
 
 					<ActionButton type="submit" className={"mt-4"}>
 						Entrar

@@ -19,13 +19,17 @@ function getLoggedUser() {
 	return loggedUser
 }
 
-function logUserIn(userId, password) {
-	const user = api.user.getUser({ userId: userId.loggedUserId })
+function logUserIn(email, password) {
+	const users = api.user.getAllUsers()
 
-	if (user.password !== password) throw new Error("Invalid password")
+	const user = users.find((user) => user.email === email)
+
+	if (!user) throw new Error("Email não encontrado no sistema")
+
+	if (user.password !== password) throw new Error("Senha incorreta")
 
 	const session = JSON.parse(localStorage.getItem("session")) || {}
-	session.loggedUserId = userId.loggedUserId
+	session.loggedUserId = user.id
 
 	localStorage.setItem("session", JSON.stringify(session))
 }
