@@ -58,6 +58,12 @@ export default function Login() {
 						Entrar
 					</ActionButton>
 				</form>
+				<p className="mt-4">
+					Não possui cadastro?{" "}
+					<a className="text-blue-400 hover:underline" href="/register">
+						Registre-se aqui
+					</a>
+				</p>
 			</div>
 		</div>
 	)
