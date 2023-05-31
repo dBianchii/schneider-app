@@ -1,4 +1,3 @@
-import { comment } from "postcss"
 import { v4 as uuidv4 } from "uuid"
 
 const users = [
@@ -95,7 +94,7 @@ const posts = [
 		body: "Meu corpo",
 		createdAt: new Date().toISOString(),
 		likes: [users[0].id, users[1].id],
-		comments: [comments[0]],
+		comments: [comments[0].id],
 	},
 	{
 		id: users[1].posts[0].postId,
@@ -105,7 +104,7 @@ const posts = [
 		body: "Meu corpo2",
 		createdAt: new Date().toISOString(),
 		likes: [users[0].id],
-		comments: [comments[4]],
+		comments: [comments[4].id],
 	},
 	{
 		id: users[2].posts[0].postId,
@@ -126,4 +125,5 @@ export function setLocalStorageData() {
 	localStorage.setItem("users", JSON.stringify(users))
 	localStorage.setItem("posts", JSON.stringify(posts))
 	localStorage.setItem("session", JSON.stringify(session))
+	localStorage.setItem("comments", JSON.stringify(comments))
 }

@@ -4,6 +4,7 @@ import { api } from "./server/api/apiRoot"
 export default function Post() {
 	const params = useParams()
 	const post = api.posts.getPost(params.post)
+	console.log(post.comments)
 
 	return (
 		<div className="p-16">
@@ -25,7 +26,7 @@ export default function Post() {
 									<h2 className="ml-4 text-xl font-semibold text-gray-600">{comment.content}</h2>
 
 									<div className="flex flex-col">
-										<h1 className="text-xl font-semibold text-gray-600">{comment.author}</h1>
+										<h1 className="text-xl font-semibold text-gray-600">{comment.author.name}</h1>
 										<h2 className="text-xl font-semibold text-gray-600">{comment.date}</h2>
 
 										<div className="flex flex-row">

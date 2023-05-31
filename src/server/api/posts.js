@@ -74,6 +74,12 @@ function getPost(id) {
 
 	const post = posts.find((x) => x.id === id)
 
+	post.comments = post.comments.map((commentId) => {
+		const comment = api.comments.getComment(commentId)
+		comment.childComments = api.comments.getComments(comment.childComments)
+		return comment
+	})
+
 	if (!post) throw new Error("Nenhum post encontrado")
 
 	return post
