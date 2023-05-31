@@ -74,7 +74,7 @@ export default function NavBar() {
 							<ActionButton isLink={true} href="/login">
 								Entrar
 							</ActionButton>
-							<SecondaryButton isLink={true} href="/login" className={"ml-4"}>
+							<SecondaryButton isLink={true} href="/loginw" className={"ml-4"}>
 								Cadastrar
 							</SecondaryButton>
 						</div>

@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Login from "./login"
+import Login from "./Login"
 import Home from "./Home"
 import Sobre from "./Sobre"
 import Post from "./Post"
@@ -19,10 +19,12 @@ function App() {
 		}
 	})
 
+	const routesNavBarNotNeeded = ["/login"]
+
 	return (
 		<BrowserRouter>
 			<div className="min-h-screen bg-gray-100">
-				<NavBar />
+				{!routesNavBarNotNeeded.includes(window.location.pathname) && <NavBar />}
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/page/:page" element={<Home />} />
