@@ -19,25 +19,90 @@ export default function Post() {
 
 				<h1 className="text-4xl font-bold text-blue-500">Comentários</h1>
 				<div className="mt-8">
-					{post.comments?.map((comment) => {
-						return (
-							<div className="flex flex-col">
-								<div className="flex flex-row">
-									<h2 className="ml-4 text-xl font-semibold text-gray-600">{comment.content}</h2>
+					<div>
+						INICIO DA DIV DO COMMENTS QUE EU ROUBEI. ALTERE ESSA DIV
+						<div class="flex w-full justify-between rounded-md border">
+							<div class="p-3">
+								<div class="flex items-center gap-3">
+									<img src="https://avatars.githubusercontent.com/u/22263436?v=4" class="h-10 w-10 rounded-full border-2 border-emerald-400 object-cover  shadow-emerald-400" />
+									<h3 class="font-bold">
+										User 1
+										<br />
+										<span class="text-sm font-normal text-gray-400">Level 1</span>
+									</h3>
+								</div>
+								<p class="mt-2 text-gray-600">this is sample commnent</p>
+								<button class="text-right text-blue-500">Reply</button>
+							</div>
 
-									<div className="flex flex-col">
-										<h1 className="text-xl font-semibold text-gray-600">{comment.author.name}</h1>
-										<h2 className="text-xl font-semibold text-gray-600">{comment.date}</h2>
-
-										<div className="flex flex-row">
-											<button className="text-xl font-semibold text-gray-600">Editar</button>
-											<button className="text-xl font-semibold text-gray-600">Excluir</button>
-										</div>
-									</div>
+							<div class="flex flex-col items-end gap-3 py-3 pr-3">
+								<div>
+									<svg class="h-6 w-6 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="5" stroke="currentColor">
+										<path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+									</svg>
+								</div>
+								<div>
+									<svg class="h-6 w-6 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="5" stroke="currentColor">
+										<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+									</svg>
 								</div>
 							</div>
-						)
-					})}
+						</div>
+						<div class="pl-14 font-bold text-gray-300">|</div>
+						<div class="ml-5 flex justify-between rounded-md  border">
+							<div class="p-3">
+								<div class="flex items-center gap-3">
+									<img src="https://avatars.githubusercontent.com/u/22263436?v=4" class="h-10 w-10 rounded-full border-2 border-emerald-400 object-cover  shadow-emerald-400" />
+									<h3 class="font-bold">
+										User 2
+										<br />
+										<span class="text-sm font-normal text-gray-400">Level 1</span>
+									</h3>
+								</div>
+								<p class="mt-2 text-gray-600">asdas</p>
+							</div>
+
+							<div class="flex flex-col gap-3 py-3 pr-3">
+								<div>
+									<svg class="h-6 w-6 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="5" stroke="currentColor">
+										<path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+									</svg>
+								</div>
+								<div>
+									<svg class="h-6 w-6 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="5" stroke="currentColor">
+										<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+									</svg>
+								</div>
+							</div>
+						</div>
+						<div class="pl-14 font-bold text-gray-300">|</div>
+						<div class="ml-5 flex justify-between rounded-md  border">
+							<div class="p-3">
+								<div class="flex items-center gap-3">
+									<img src="https://avatars.githubusercontent.com/u/22263436?v=4" class="h-10 w-10 rounded-full border-2 border-emerald-400 object-cover  shadow-emerald-400" />
+									<h3 class="font-bold">
+										User 3
+										<br />
+										<span class="text-sm font-normal text-gray-400">Level 1</span>
+									</h3>
+								</div>
+								<p class="mt-2 text-gray-600">this is sample commnent</p>
+							</div>
+
+							<div class="flex flex-col gap-3 py-3 pr-3">
+								<div>
+									<svg class="h-6 w-6 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="5" stroke="currentColor">
+										<path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+									</svg>
+								</div>
+								<div>
+									<svg class="h-6 w-6 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="5" stroke="currentColor">
+										<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+									</svg>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
