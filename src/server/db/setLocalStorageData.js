@@ -114,6 +114,7 @@ const posts = [
 		body: "Meu corpo 3",
 		createdAt: new Date().toISOString(),
 		likes: [],
+		comments: [],
 	},
 ]
 

@@ -22,6 +22,7 @@ async function createPost({ title, authorId, description, body }) {
 		description,
 		body,
 		likes: [],
+		comments: [],
 	}
 
 	posts.push(newPost)
