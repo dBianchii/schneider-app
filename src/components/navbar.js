@@ -1,6 +1,5 @@
 import { ActionButton, SecondaryButton } from "./button"
 import { SchneiderAvatar } from "./avatar"
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu"
 import { CiLogout } from "react-icons/ci"
 import { api } from "../server/api/apiRoot"
 import { useLocation } from "react-router-dom"
