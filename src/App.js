@@ -4,6 +4,7 @@ import Home from "./Home"
 import Sobre from "./Sobre"
 import Post from "./Post"
 import Usuario from "./Usuario"
+import Register from "./Register"
 import "./App.css"
 import NavBar from "./components/navbar"
 import Footer from "./components/footer"
@@ -20,7 +21,7 @@ function App() {
 		}
 	})
 
-	const routesNavAndFooterNotNeeded = ["/login"]
+	const routesNavAndFooterNotNeeded = ["/login", "/register"]
 
 	return (
 		<BrowserRouter>
@@ -30,11 +31,12 @@ function App() {
 					<Route path="/" element={<Home />} />
 					<Route path="/page/:page" element={<Home />} />
 					<Route path="/login" element={<Login />} />
+					<Route path="/register" element={<Register />} />
 					<Route path="/sobre" element={<Sobre />} />
 					<Route path="/post/:post" element={<Post />} />
 					<Route path="/user/:userId" element={<Usuario />} />
 				</Routes>
-				<Footer />
+				{!routesNavAndFooterNotNeeded.includes(window.location.pathname) && <Footer />}
 			</div>
 		</BrowserRouter>
 	)
