@@ -6,6 +6,7 @@ import Post from "./Post"
 import Usuario from "./Usuario"
 import "./App.css"
 import NavBar from "./components/navbar"
+import Footer from "./components/footer"
 import { useEffect } from "react"
 import { setLocalStorageData } from "./server/db/setLocalStorageData"
 
@@ -19,12 +20,12 @@ function App() {
 		}
 	})
 
-	const routesNavBarNotNeeded = ["/login"]
+	const routesNavAndFooterNotNeeded = ["/login"]
 
 	return (
 		<BrowserRouter>
 			<div className="min-h-screen bg-gray-100">
-				{!routesNavBarNotNeeded.includes(window.location.pathname) && <NavBar />}
+				{!routesNavAndFooterNotNeeded.includes(window.location.pathname) && <NavBar />}
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/page/:page" element={<Home />} />
@@ -33,6 +34,7 @@ function App() {
 					<Route path="/post/:post" element={<Post />} />
 					<Route path="/user/:userId" element={<Usuario />} />
 				</Routes>
+				<Footer />
 			</div>
 		</BrowserRouter>
 	)
