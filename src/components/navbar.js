@@ -4,6 +4,7 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu"
 import { CiLogout } from "react-icons/ci"
 import { api } from "../server/api/apiRoot"
 import { useLocation } from "react-router-dom"
+import { useState } from "react"
 export default function NavBar() {
 	const location = useLocation()
 	const user = api.session.getLoggedUser()
@@ -22,6 +23,8 @@ export default function NavBar() {
 			hidden: Boolean(user),
 		},
 	]
+
+	const [open, setOpen] = useState(false)
 
 	return (
 		<nav className="border-gray-200 bg-slate-800">
@@ -46,35 +49,30 @@ export default function NavBar() {
 				</div>
 				<div className={`flex flex-row`}>
 					{user ? (
-						<DropdownMenu.Root>
-							<DropdownMenu.Trigger asChild>
-								<div className="rounded-full ring-4 ring-offset-2 transition-all hover:ring-schneider-green">
-									<SchneiderAvatar src={user.image ?? ""} />
+						<div className="relative" onClick={() => setOpen((prev) => !prev)}>
+							<div className="rounded-full ring-4 ring-offset-2 transition-all hover:ring-schneider-green">
+								<SchneiderAvatar src={user.image ?? ""} />
+							</div>
+							<div className={`absolute right-0 mt-2 w-[200px] rounded-md bg-white shadow-md ${!open && "hidden"}`}>
+								<div
+									onClick={(e) => {
+										e.preventDefault()
+										api.session.logUserOut()
+										window.location.reload()
+									}}
+									className="flex cursor-default select-none items-center rounded-md p-2 font-medium outline-none transition-colors hover:bg-gray-500 focus:bg-gray-50"
+								>
+									<CiLogout className="mr-2 h-4 w-4 text-slate-600" />
+									<span>Log Out</span>
 								</div>
-							</DropdownMenu.Trigger>
-							<DropdownMenu.Portal>
-								<DropdownMenu.Content side={"bottom"} align="end" className="w-[200px] rounded-md bg-white shadow-md">
-									<DropdownMenu.Item
-										onSelect={() => {
-											api.session.logUserOut()
-											window.location.reload()
-										}}
-										className="flex cursor-default select-none items-center rounded-md p-2 font-medium outline-none transition-colors hover:bg-gray-500 focus:bg-gray-50"
-									>
-										<CiLogout className="mr-2 h-4 w-4 text-slate-800" />
-										<span>Log Out</span>
-									</DropdownMenu.Item>
-
-									<DropdownMenu.Arrow />
-								</DropdownMenu.Content>
-							</DropdownMenu.Portal>
-						</DropdownMenu.Root>
+							</div>
+						</div>
 					) : (
 						<div className="hidden md:block">
 							<ActionButton isLink={true} href="/login">
 								Entrar
 							</ActionButton>
-							<SecondaryButton isLink={true} href="/loginw" className={"ml-4"}>
+							<SecondaryButton isLink={true} href="/login" className={"ml-4"}>
 								Cadastrar
 							</SecondaryButton>
 						</div>
