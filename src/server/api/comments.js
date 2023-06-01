@@ -20,17 +20,10 @@ function getComments(commentIdArray) {
 	})
 }
 
-function createComment(postId, content) {
-	// {
-	// 	isParent: true,
-	// 	id: uuidv4(),
-	// 	authorId: users[0].id,
-	// 	content: "Meu comentário",
-	// 	createdAt: new Date().toISOString(),
-	// 	childComments: [childComment1Id, childComment2Id],
-	// }
+function createComment(postId, content) { 	
 
-	const allPosts = posts.getAllPosts()
+	const allPosts = JSON.parse(localStorage.getItem("posts"))
+	const allComments = JSON.parse(localStorage.getItem("comments"))
 	const user = session.getLoggedUser()
 
 	const postComment = {
@@ -41,14 +34,20 @@ function createComment(postId, content) {
 		createdAt: new Date().toISOString(),
 		childComments: []
 	}
-	 allPosts.map((post) => {
-		if(post.id === postId) {
-			return post.comments.push(postComment)
-		}
-	 })
+	allComments.push(postComment)
 
-	 const newStorage = localStorage.setItem("comments", JSON.stringify(allPosts))
-	return newStorage
+	allPosts.map((post) => {
+		if(post.id === postId) {
+			return post.comments.push(postComment.id)
+		}
+		return
+	})
+
+	localStorage.setItem("posts", JSON.stringify(allPosts))
+	localStorage.setItem("comments", JSON.stringify(allComments))
+
+	
+	return postComment
 }
 
 const comments = {
