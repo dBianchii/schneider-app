@@ -6,6 +6,7 @@ const users = [
 		image: "https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80",
 		name: "Jiulia Santos",
 		email: "jiulia@schneider.com",
+		followers: [],
 		posts: [
 			{
 				postId: uuidv4(),
@@ -17,6 +18,7 @@ const users = [
 		id: uuidv4(),
 		name: "Lorenzo",
 		email: "lorenzo@schneider.com",
+		followers: [],
 		posts: [
 			{
 				postId: uuidv4(),
@@ -28,6 +30,7 @@ const users = [
 		id: uuidv4(),
 		name: "Gabriel",
 		email: "gabriel@schneider.com",
+		followers: [],
 		image: "https://lh3.googleusercontent.com/a/AGNmyxYwLT_qbHap7Qn_IHQTBkdXK_rMPrC-BVp2UJJa=s96-c",
 		posts: [
 			{

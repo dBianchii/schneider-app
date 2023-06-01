@@ -86,6 +86,12 @@ function getPost(id) {
 	return post
 }
 
+function getPostsForUser(userId) {
+	const posts = getAllPosts()
+
+	return posts.filter((post) => post.authorId === userId)
+}
+
 const posts = {
 	getAllPosts,
 	createPost,
@@ -93,5 +99,6 @@ const posts = {
 	unlikePost,
 	deletePost,
 	getPost,
+	getPostsForUser,
 }
 export default posts

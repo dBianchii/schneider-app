@@ -30,6 +30,7 @@ function registerUser({ email, name, image, password }) {
 		image,
 		password,
 		posts: [],
+		followers: [],
 	}
 
 	users.push(newUser)
@@ -41,9 +42,33 @@ function registerUser({ email, name, image, password }) {
 	return newUser
 }
 
+function followUser(userId) {
+	const loggedUser = api.session.getLoggedUser()
+	if (!loggedUser) throw new Error("Usuario não logado")
+
+	const users = getAllUsers()
+	const user = users.find((user) => user.id === userId)
+	user.followers.push(loggedUser.id)
+
+	localStorage.setItem("users", JSON.stringify(users))
+}
+
+function unfollowUser(userId) {
+	const loggedUser = api.session.getLoggedUser()
+	if (!loggedUser) throw new Error("Usuario não logado")
+
+	const users = getAllUsers()
+	const user = users.find((user) => user.id === userId)
+	user.followers = user.followers.filter((follower) => follower !== loggedUser.id)
+
+	localStorage.setItem("users", JSON.stringify(users))
+}
+
 const user = {
 	getUser,
 	getAllUsers,
 	registerUser,
+	followUser,
+	unfollowUser,
 }
 export default user
