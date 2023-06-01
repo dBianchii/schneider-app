@@ -1,12 +1,15 @@
 import { useParams } from "react-router-dom"
 import { api } from "./server/api/apiRoot"
 import { PostComment } from "./components/post/postcomment";
+import { CommentInput } from "./components/post/CommentInput";
 
 export default function Post() {
   const params = useParams();
   console.log(params);
   const post = api.posts.getPost(params.post);
   console.log(post);
+
+
 
   return (
     <div className="p-16">
@@ -22,8 +25,9 @@ export default function Post() {
         <hr className="my-8 h-px w-[700px] border-0 bg-gradient-to-l from-transparent to-gray-600"></hr>
 
         <h1 className="text-4xl font-bold text-blue-500">Comentários</h1>
-        <div className="mt-8">
-          <section id="comments">
+        <div className="mt-8 w-full max-w-[700px]">
+          <CommentInput postId={post.id} />
+          <section id="comments ">
             {post?.comments.map((item, index) => (
               <PostComment
                 key={`PostCommentKey-${index}`}
