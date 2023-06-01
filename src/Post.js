@@ -11,14 +11,10 @@ export default function Post() {
 
 
   useEffect(() => {
-  const thisPost = api.posts.getPost(params.post);
+    const thisPost = api.posts.getPost(params.post);
 
-  setPost(thisPost)
-
-  }, [newComment])
-  
-
-
+    setPost(thisPost);
+  }, [newComment]);
 
   return (
     <div className="p-16">
@@ -35,17 +31,24 @@ export default function Post() {
 
         <h1 className="text-4xl font-bold text-blue-500">Comentários</h1>
         <div className="mt-8 w-full max-w-[700px]">
-          <CommentInput postId={post.id} setNewComment={() => setNewComment(!newComment)} />
-          <section id="comments ">
-            {post?.comments.map((item, index) => (
-              <PostComment
-                key={`PostCommentKey-${index}`}
-                name={item.author.name}
-                content={item.content}
-                image={item.author.image}
-                child_comments={item?.childComments}
-              />
-            ))}
+          <CommentInput
+            postId={post.id}
+            setNewComment={() => setNewComment(!newComment)}
+          />
+          <section id="comments">
+            {post?.comments.map((item, index) => {
+              return (
+                <PostComment
+                  commentId={item.id}
+                  key={`PostCommentKey-${index}`}
+                  name={item.author.name}
+                  content={item.content}
+                  image={item.author.image}
+                  child_comments={item?.childComments}
+                  newComment={() => setNewComment(!newComment)}
+                />
+              );
+            })}
           </section>
         </div>
       </div>

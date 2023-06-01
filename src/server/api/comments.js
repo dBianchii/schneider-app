@@ -50,10 +50,38 @@ function createComment(postId, content) {
 	return postComment
 }
 
-const comments = {
-	getComment,
-	getComments,
-	createComment
+function createChildComment(commentId, content) {
+  //   const allPosts = JSON.parse(localStorage.getItem("posts"));
+  const allComments = JSON.parse(localStorage.getItem("comments"));
+  const user = session.getLoggedUser();
+
+  const postComment = {
+    isParent: true,
+    id: uuidv4(),
+    authorId: user.id,
+    content,
+    createdAt: new Date().toISOString(),
+    childComments: [],
+  };
+  allComments.push(postComment);
+
+  allComments.map((comment) => {
+    if (comment.id === commentId) {
+      return comment.childComments.push(postComment.id);
+    }
+    return;
+  });
+
+  localStorage.setItem("comments", JSON.stringify(allComments));
+
+  return postComment;
 }
+
+const comments = {
+  getComment,
+  getComments,
+  createComment,
+  createChildComment,
+};
 
 export default comments
