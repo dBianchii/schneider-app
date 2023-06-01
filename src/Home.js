@@ -26,7 +26,7 @@ export default function Home() {
 
 	return (
 		<>
-			<section className="space-y-6 p-10">
+			<section className="space-y-6 p-10 min-h-[82.5vh] ">
 				<h4 className="text-4xl font-bold text-gray-800">Últimos posts</h4>
 				<ActionButton onClick={setIsModalOpen}>Criar post</ActionButton>
 				<div className="grid grid-cols-4 gap-4">
