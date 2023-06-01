@@ -1,10 +1,9 @@
 import { api } from "./apiRoot.js"
 import session from "./session.js"
-import { v4 as uuidv4} from "uuid"
-import posts from "./posts.js"
+import { v4 as uuidv4 } from "uuid"
 
 function getComment(commentId) {
-	const comments = JSON.parse(localStorage.getItem("comments"))
+	const comments = JSON.parse(localStorage.getItem("comments")) || []
 	const comment = comments.find((comment) => comment.id === commentId)
 	comment.author = api.user.getUser({ userId: comment.authorId })
 	if (!comment) throw new Error("Nenhum comentário encontrado")
@@ -20,68 +19,53 @@ function getComments(commentIdArray) {
 	})
 }
 
-function createComment(postId, content) { 	
-
-	const allPosts = JSON.parse(localStorage.getItem("posts"))
-	const allComments = JSON.parse(localStorage.getItem("comments"))
+function createComment(postId, content) {
+	const allPosts = JSON.parse(localStorage.getItem("posts")) || []
+	const allComments = JSON.parse(localStorage.getItem("comments")) || []
 	const user = session.getLoggedUser()
 
 	const postComment = {
-		isParent: true,
 		id: uuidv4(),
 		authorId: user.id,
 		content,
 		createdAt: new Date().toISOString(),
-		childComments: []
+		childComments: [],
 	}
 	allComments.push(postComment)
 
-	allPosts.map((post) => {
-		if(post.id === postId) {
-			return post.comments.push(postComment.id)
-		}
-		return
-	})
+	allPosts.find((post) => post.id === postId).comments.push(postComment.id)
 
 	localStorage.setItem("posts", JSON.stringify(allPosts))
 	localStorage.setItem("comments", JSON.stringify(allComments))
 
-	
 	return postComment
 }
 
 function createChildComment(commentId, content) {
-  //   const allPosts = JSON.parse(localStorage.getItem("posts"));
-  const allComments = JSON.parse(localStorage.getItem("comments"));
-  const user = session.getLoggedUser();
+	const allComments = JSON.parse(localStorage.getItem("comments")) || []
+	const user = session.getLoggedUser()
 
-  const postComment = {
-    isParent: true,
-    id: uuidv4(),
-    authorId: user.id,
-    content,
-    createdAt: new Date().toISOString(),
-    childComments: [],
-  };
-  allComments.push(postComment);
+	const postComment = {
+		id: uuidv4(),
+		authorId: user.id,
+		content,
+		createdAt: new Date().toISOString(),
+		childComments: [],
+	}
+	allComments.push(postComment)
 
-  allComments.map((comment) => {
-    if (comment.id === commentId) {
-      return comment.childComments.push(postComment.id);
-    }
-    return;
-  });
+	allComments.find((x) => x.id === commentId).childComments.push(postComment.id)
 
-  localStorage.setItem("comments", JSON.stringify(allComments));
+	localStorage.setItem("comments", JSON.stringify(allComments))
 
-  return postComment;
+	return postComment
 }
 
 const comments = {
-  getComment,
-  getComments,
-  createComment,
-  createChildComment,
-};
+	getComment,
+	getComments,
+	createComment,
+	createChildComment,
+}
 
 export default comments

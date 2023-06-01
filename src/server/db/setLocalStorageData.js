@@ -44,7 +44,6 @@ const childComment3Id = uuidv4()
 
 const comments = [
 	{
-		isParent: true,
 		id: uuidv4(),
 		authorId: users[0].id,
 		content: "Meu comentário",
@@ -52,7 +51,6 @@ const comments = [
 		childComments: [childComment1Id, childComment2Id],
 	},
 	{
-		isParent: false,
 		id: childComment1Id,
 		authorId: users[0].id,
 		content: "Meu comentário 2",
@@ -60,7 +58,6 @@ const comments = [
 		childComments: [childComment3Id],
 	},
 	{
-		isParent: false,
 		id: childComment2Id,
 		authorId: users[0].id,
 		content: "Meu comentário 3",
@@ -68,7 +65,6 @@ const comments = [
 		childComments: [],
 	},
 	{
-		isParent: false,
 		id: childComment3Id,
 		authorId: users[0].id,
 		content: "Meu comentário 4",
@@ -76,7 +72,6 @@ const comments = [
 		childComments: [],
 	},
 	{
-		isParent: true,
 		id: uuidv4(),
 		authorId: users[1].id,
 		content: "Meu comentário 5",
