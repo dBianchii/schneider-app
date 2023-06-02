@@ -1,6 +1,7 @@
 import { ActionButton, SecondaryButton } from "./button"
 import { SchneiderAvatar } from "./avatar"
 import { CiLogout } from "react-icons/ci"
+import { CgProfile } from "react-icons/cg"
 import { api } from "../server/api/apiRoot"
 import { useLocation } from "react-router-dom"
 import { useState } from "react"
@@ -24,6 +25,21 @@ export default function NavBar() {
 	]
 
 	const [open, setOpen] = useState(false)
+
+	const menuItems = [
+		{
+			title: "Profile",
+			icon: <CgProfile className="mr-2 h-4 w-4 text-slate-400" />,
+		},
+		{
+			title: "Log Out",
+			icon: <CiLogout className="mr-2 h-4 w-4 text-slate-600" />,
+			onClick: () => {
+				api.session.logUserOut()
+				window.location.reload()
+			},
+		},
+	]
 
 	return (
 		<nav className="border-gray-200 bg-slate-800">
@@ -52,18 +68,20 @@ export default function NavBar() {
 							<div className="rounded-full ring-4 ring-offset-2 transition-all hover:ring-schneider-green">
 								<SchneiderAvatar src={user.image ?? ""} />
 							</div>
-							<div className={`absolute right-0 mt-2 w-[200px] rounded-md bg-white shadow-md ${!open && "hidden"}`}>
-								<div
-									onClick={(e) => {
-										e.preventDefault()
-										api.session.logUserOut()
-										window.location.reload()
-									}}
-									className="flex cursor-default select-none items-center rounded-md p-2 font-medium outline-none transition-colors hover:bg-gray-500 focus:bg-gray-50"
-								>
-									<CiLogout className="mr-2 h-4 w-4 text-slate-600" />
-									<span>Log Out</span>
-								</div>
+							<div className={`absolute right-0 mt-2 w-[150px] rounded-md bg-white shadow-md ${!open && "hidden"}`}>
+								{menuItems.map((item, i) => (
+									<div
+										key={i}
+										onClick={(e) => {
+											e.preventDefault()
+											item.onClick()
+										}}
+										className="flex cursor-default select-none items-center rounded-md p-2 text-sm font-medium outline-none transition-colors hover:bg-gray-200"
+									>
+										{item.icon}
+										<span>{item.title}</span>
+									</div>
+								))}
 							</div>
 						</div>
 					) : (

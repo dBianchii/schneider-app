@@ -1,7 +1,6 @@
 import { SchneiderAvatar } from "./components/avatar"
 import { api } from "./server/api/apiRoot"
 import { useParams } from "react-router-dom"
-import { ActionButton } from "./components/button"
 import { useState } from "react"
 
 export default function Usuario() {

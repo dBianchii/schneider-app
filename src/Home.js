@@ -26,7 +26,7 @@ export default function Home() {
 
 	return (
 		<>
-			<section className="space-y-6 p-10 min-h-[82.5vh] ">
+			<section className="min-h-[82.5vh] space-y-6 p-10 ">
 				<h4 className="text-4xl font-bold text-gray-800">Últimos posts</h4>
 				<ActionButton onClick={setIsModalOpen}>Criar post</ActionButton>
 				<div className="grid grid-cols-4 gap-4">
@@ -121,14 +121,14 @@ function Pagination({ currentPage, totalPages }) {
 		<nav aria-label="Pagination" className="mt-4 text-center">
 			<ul className="inline-flex -space-x-px">
 				<li>
-					<a href={getPageLink(currentPage - 1)} tabIndex="-1" className={`${currentPage === 0 && "pointer-events-none text-gray-500 transition-colors"} ml-0 rounded-l-lg border border-gray-300 bg-white px-3 py-2 leading-tight hover:bg-gray-100 disabled:opacity-75`}>
-						Previous
+					<a href={getPageLink(currentPage - 1)} tabIndex="-1" className={`${currentPage === 0 && "pointer-events-none cursor-not-allowed text-gray-500 transition-colors"} ml-0 rounded-l-lg border border-gray-300 bg-white px-3 py-2 leading-tight hover:bg-gray-100 disabled:opacity-75`}>
+						Anterior
 					</a>
 				</li>
 				{renderPaginationItems()}
 				<li>
 					<a href={getPageLink(currentPage + 1)} tabIndex="-1" className={`${currentPage === totalPages - 1 && "pointer-events-none text-gray-500 transition-colors"} ml-0 rounded-r-lg border border-gray-300 bg-white px-3 py-2 leading-tight hover:bg-gray-100 disabled:opacity-75`}>
-						Next
+						Próximo
 					</a>
 				</li>
 			</ul>
