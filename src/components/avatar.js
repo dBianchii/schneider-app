@@ -11,6 +11,18 @@ export function SchneiderAvatar({ src, size = "md" }) {
 		case "lg":
 			sizeClass = "h-16 w-16"
 			break
+		case "xl":
+			sizeClass = "h-24 w-24"
+			break
+		case "2xl":
+			sizeClass = "h-32 w-32"
+			break
+		case "3xl":
+			sizeClass = "h-40 w-40"
+			break
+		case "4xl":
+			sizeClass = "h-48 w-48"
+			break
 		default:
 			sizeClass = "h-[45px] w-[45px]"
 	}

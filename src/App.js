@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Login from "./Login"
 import Home from "./Home"
-import Sobre from "./Sobre"
 import Post from "./Post"
 import Usuario from "./Usuario"
 import Register from "./Register"
@@ -10,6 +9,7 @@ import NavBar from "./components/navbar"
 import Footer from "./components/footer"
 import { useEffect } from "react"
 import { setLocalStorageData } from "./server/db/setLocalStorageData"
+import SobreOProjeto from "./SobreOProjeto"
 
 function App() {
 	useEffect(() => {
@@ -32,7 +32,7 @@ function App() {
 					<Route path="/page/:page" element={<Home />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/register" element={<Register />} />
-					<Route path="/sobre" element={<Sobre />} />
+					<Route path="/sobre" element={<SobreOProjeto />} />
 					<Route path="/post/:post" element={<Post />} />
 					<Route path="/user/:userId" element={<Usuario />} />
 				</Routes>

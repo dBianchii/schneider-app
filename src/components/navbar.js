@@ -15,7 +15,7 @@ export default function NavBar() {
 		},
 		{
 			title: "Sobre",
-			href: "/sobrenos",
+			href: "/sobre",
 		},
 		{
 			title: "Login",
