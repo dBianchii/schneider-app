@@ -48,7 +48,7 @@ export default function SobreOProjeto() {
 				<h1 className="text-4xl font-bold text-gray-600 ">Recursos e tecnologias do curso que foram utilizadas</h1>
 				<ul>
 					<li className="text-lg text-gray-600">Projeto inicializado usando Create-React-App</li>
-					<li className="text-lg text-gray-600">TailwindCSS</li>
+					<li className="text-lg text-gray-600">Conceitos de CSS aplicados utilizando TailwindCSS - uma alternativa ao bootstrap</li>
 					<li className="text-lg text-gray-600">React Router</li>
 					<li className="text-lg text-gray-600">React Icons</li>
 					<li className="text-lg text-gray-600">React Hooks</li>
