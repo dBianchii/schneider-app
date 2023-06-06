@@ -4,38 +4,26 @@ import { TextareaInput } from "./textareaInput"
 import { useForm } from "react-hook-form"
 import posts from "../../src/server/api/posts"
 import { api } from "../server/api/apiRoot"
+import * as y from "yup"
+import { yupResolver } from "@hookform/resolvers/yup"
+
+const formSchema = y.object({
+	title: y.string().required("Campo obrigatório"),
+	description: y.string(),
+	body: y.string().required("Campo obrigatório")
+})
 
 export function CreatePostModal({ setIsModalOpen, setPosts }) {
 	const user = api.session.getLoggedUser()
 	const {
 		handleSubmit,
 		register,
-		setError,
 		formState: { errors },
-	} = useForm({})
-
-	const validationFuction = (fields) => {
-		let errors = []
-
-		if (fields.title === (undefined || "")) {
-			errors.push({ field: "title", message: "Campo obrigatório" })
-		}
-
-		if (fields.body === (undefined || "")) {
-			errors.push({ field: "body", message: "Campo obrigatório" })
-		}
-
-		return errors
-	}
+	} = useForm({
+		resolver: yupResolver(formSchema)
+	})
 
 	const onSubmit = (fields) => {
-		const errors = validationFuction(fields)
-
-		if (errors[0] !== undefined) {
-			return errors.map((err) => {
-				return setError(err.field, { message: err.message })
-			})
-		}
 
 		posts.createPost({ title: fields.title, authorId: user.id, description: fields.description, body: fields.body })
 		setPosts(api.posts.getAllPosts())
