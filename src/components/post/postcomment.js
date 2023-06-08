@@ -25,7 +25,7 @@ export const PostComment = ({ commentId, name, content, image, child_comments, n
 			<button onClick={() => setReplyState(!replyState)} className="text-right text-blue-500">
 				{replyState ? "Fechar" : "Responder"}
 			</button>
-			{replyState && <ChildCommentInput commentId={commentId} setNewComment={newComment} />}
+			{replyState && <ChildCommentInput commentId={commentId} setNewComment={newComment} setReplyState={setReplyState} />}
 
 			<section className="flex flex-col gap-6">
 				{child_comments?.map((item, index) => (
