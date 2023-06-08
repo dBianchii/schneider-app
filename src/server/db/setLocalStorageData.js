@@ -54,47 +54,7 @@ const users = [
 	},
 ]
 
-const childComment1Id = uuidv4()
-const childComment2Id = uuidv4()
-const childComment3Id = uuidv4()
-
-const comments = [
-	{
-		id: uuidv4(),
-		authorId: users[0].id,
-		content: "Meu comentário",
-		createdAt: new Date().toISOString(),
-		childComments: [childComment1Id, childComment2Id],
-	},
-	{
-		id: childComment1Id,
-		authorId: users[0].id,
-		content: "Meu comentário 2",
-		createdAt: new Date().toISOString(),
-		childComments: [childComment3Id],
-	},
-	{
-		id: childComment2Id,
-		authorId: users[0].id,
-		content: "Meu comentário 3",
-		createdAt: new Date().toISOString(),
-		childComments: [],
-	},
-	{
-		id: childComment3Id,
-		authorId: users[0].id,
-		content: "Meu comentário 4",
-		createdAt: new Date().toISOString(),
-		childComments: [],
-	},
-	{
-		id: uuidv4(),
-		authorId: users[1].id,
-		content: "Meu comentário 5",
-		createdAt: new Date().toISOString(),
-		childComments: [],
-	},
-]
+const comments = []
 
 const posts = [
 	{
@@ -115,7 +75,7 @@ const posts = [
 		body: "Meu corpo",
 		createdAt: new Date().toISOString(),
 		likes: [users[0].id, users[1].id],
-		comments: [comments[0].id],
+		comments: [],
 	},
 	{
 		id: users[1].posts[0].postId,
@@ -125,7 +85,7 @@ const posts = [
 		body: "Meu corpo2",
 		createdAt: new Date().toISOString(),
 		likes: [users[0].id],
-		comments: [comments[4].id],
+		comments: [],
 	},
 	{
 		id: users[2].posts[0].postId,
