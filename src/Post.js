@@ -22,10 +22,10 @@ export default function Post() {
         <div className="min-h-42">
           <h1 className="text-5xl font-bold text-gray-800">{post.title}</h1>
           <h2 className="mt-6 text-4xl font-semibold text-gray-600">
-            {post.body}
+            {post.description}
           </h2>
           <hr className="my-8 h-px w-[700px] border-0 bg-gradient-to-l from-transparent to-gray-600"></hr>
-          <p className="mt-8 text-xl">{post.description}</p>
+          <p className="mt-8 text-xl font-light">{post.body}</p>
         </div>
         <hr className="my-8 h-px w-[700px] border-0 bg-gradient-to-l from-transparent to-gray-600"></hr>
 
