@@ -26,7 +26,7 @@ export default function NavBar() {
 			title: "Profile",
 			icon: <CgProfile className="mr-2 h-4 w-4 text-slate-400" />,
 			onClick: () => {
-				window.location.href = `/user/${user.id}`
+				window.location.assign(`/user/${user.id}`)
 			},
 		},
 		{
