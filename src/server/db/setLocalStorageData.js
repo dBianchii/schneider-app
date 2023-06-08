@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from "uuid"
 
 const users = [
 	{
-		id: uuidv4(),
+		id: "12ef6180-7200-4087-8e8f-45268828eea2",
 		image: "https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80",
 		name: "Jiulia Santos",
 		email: "jiulia@schneider.com",
@@ -12,22 +12,22 @@ const users = [
 				postId: uuidv4(),
 			},
 		],
-		password: "123456",
+		password: "EuGostoDeBolo123",
 	},
 	{
-		id: uuidv4(),
-		name: "Lorenzo",
-		email: "lorenzo@schneider.com",
+		id: "7e233ca7-f1fc-45a3-8a6f-e8977dd53910",
+		name: "João Rodriguez",
+		email: "rodriguez@schneider.com",
 		followers: [],
 		posts: [
 			{
 				postId: uuidv4(),
 			},
 		],
-		password: "1234563",
+		password: "EuAmoReact!",
 	},
 	{
-		id: uuidv4(),
+		id: "3422afd7-4108-426e-8cee-6d165545dc2e",
 		name: "Gabriel",
 		email: "gabriel@schneider.com",
 		followers: [],
@@ -37,7 +37,20 @@ const users = [
 				postId: uuidv4(),
 			},
 		],
-		password: "43234",
+		password: "EuAmoTypescript!!",
+	},
+	{
+		id: "355014e7-a3de-443b-b56c-5148077b1040",
+		name: "Pedro Roçini",
+		email: "pedroRocini@schneider.com",
+		followers: [],
+		image: "https://i.imgur.com/qkDf8vg.png",
+		posts: [
+			{
+				postId: uuidv4(),
+			},
+		],
+		password: "EuNaoGostoDeBootstrap!23",
 	},
 ]
 
@@ -84,6 +97,16 @@ const comments = [
 ]
 
 const posts = [
+	{
+		id: users[3].posts[0].postId,
+		authorId: users[3].id,
+		title: "Meu post 4",
+		description: "Meu conteúdo 4",
+		body: "Meu corpo 4",
+		createdAt: new Date().toISOString(),
+		likes: [],
+		comments: [],
+	},
 	{
 		id: users[0].posts[0].postId,
 		authorId: users[0].id,
