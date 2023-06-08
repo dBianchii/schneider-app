@@ -13,6 +13,11 @@ export default function Register() {
 		formState: { errors },
 	} = useForm({})
 
+	const user = api.session.getLoggedUser()
+	if (user !== null) {
+		window.location.href = "/"
+	}
+
 	const validationFunction = (fields) => {
 		let errors = []
 

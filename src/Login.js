@@ -12,6 +12,11 @@ export default function Login() {
 		formState: { errors },
 	} = useForm({})
 
+	const user = api.session.getLoggedUser()
+	if (user !== null) {
+		window.location.href = "/"
+	}
+
 	const validationFuction = (fields) => {
 		let errors = []
 
