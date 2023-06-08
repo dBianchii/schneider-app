@@ -9,7 +9,6 @@ export default function Post() {
   const [ newComment, setNewComment ] = useState(false)
   const [ post, setPost ] = useState(api.posts.getPost(params.post))
 
-
   useEffect(() => {
     const thisPost = api.posts.getPost(params.post);
 
