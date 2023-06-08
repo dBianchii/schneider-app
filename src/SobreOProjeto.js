@@ -1,25 +1,26 @@
 import { SchneiderAvatar } from "./components/avatar"
+import enricoAvatar from "./assets/enrico.JPG";
 
 export default function SobreOProjeto() {
-	const profiles = [
-		{
-			name: "Gabriel Bianchi",
-			role: "Desenvolvedor",
-			image: "https://avatars.githubusercontent.com/u/60052506?v=4",
-		},
-		{
-			name: "Enrico",
-			role: "Desenvolvedor",
-			image: "https://avatars.githubusercontent.com/u/60052506?v=4",
-		},
-		{
-			name: "Lorenzo",
-			role: "Desenvolvedor",
-			image: "https://avatars.githubusercontent.com/u/60052506?v=4",
-		},
-	]
+  const profiles = [
+    {
+      name: "Gabriel Bianchi",
+      role: "Desenvolvedor",
+      image: "https://avatars.githubusercontent.com/u/60052506?v=4",
+    },
+    {
+      name: "Enrico",
+      role: "Desenvolvedor",
+      image: enricoAvatar,
+    },
+    {
+      name: "Lorenzo",
+      role: "Desenvolvedor",
+      image: "https://avatars.githubusercontent.com/u/60052506?v=4",
+    },
+  ];
 
-	return (
+  return (
     <>
       <div className="mx-52 flex flex-col items-center space-y-8">
         <h1 className="mt-12 text-4xl font-bold text-gray-800">
@@ -76,7 +77,6 @@ export default function SobreOProjeto() {
           <li className="text-lg text-gray-600">React Hooks</li>
           <li className="text-lg text-gray-600">React hook form</li>
           <li className="text-lg text-gray-600">Yup</li>
-
           <li className="text-lg text-gray-600">Javascript, funções</li>
         </ul>
       </div>
