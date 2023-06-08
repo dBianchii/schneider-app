@@ -14,7 +14,7 @@ export default function Home() {
 	const params = useParams()
 	const page = Number(params.page) || 0
 
-	const perPage = 8
+	const perPage = 6
 
 	const start = page * perPage
 	const end = start + perPage
@@ -27,7 +27,7 @@ export default function Home() {
 			<section className="min-h-[82.5vh] space-y-6 p-10 ">
 				<h4 className="text-4xl font-bold text-gray-800">Últimos posts</h4>
 				<ActionButton onClick={setIsModalOpen}>Criar post</ActionButton>
-				<div className="grid grid-cols-4 gap-4">
+				<div className="mx-20 grid grid-cols-3 gap-4">
 					{paginatedPosts.map((post, i) => (
 						<PostCard key={post.id} post={post} />
 					))}

@@ -12,7 +12,6 @@ export default function Post() {
 	const [post, setPost] = useState(api.posts.getPost(params.post))
 	const loggedUser = api.session.getLoggedUser()
 	const [following, setFollowing] = useState(post.author.followers.includes(loggedUser.id))
-	const [showDelete, setShowDelete] = useState(false)
 
 	useEffect(() => {
 		const thisPost = api.posts.getPost(params.post)
@@ -59,10 +58,10 @@ export default function Post() {
 							)}
 						</div>
 					</div>
-					<div className="mt-4 flex flex-row" onMouseOver={() => setShowDelete(true)} onMouseLeave={() => setShowDelete(false)}>
+					<div className="mt-4 flex flex-row">
 						<h1 className="text-5xl font-bold text-gray-800">{post.title}</h1>
 
-						{loggedUser.id === post.author.id && showDelete && (
+						{loggedUser.id === post.author.id && (
 							<DangerButton
 								size={"sm"}
 								className={"ml-4 mt-4 h-8 bg-red-400"}
