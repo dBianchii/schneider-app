@@ -11,12 +11,10 @@ export default function Home() {
 	const [posts, setPosts] = useState(api.posts.getAllPosts())
 	const [isModalOpen, setIsModalOpen] = useState(false)
 
-	const session = api.session.getLoggedUser()
-
 	const params = useParams()
 	const page = Number(params.page) || 0
 
-	const perPage = 12
+	const perPage = 8
 
 	const start = page * perPage
 	const end = start + perPage
