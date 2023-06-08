@@ -1,56 +1,79 @@
 import { useParams } from "react-router-dom"
 import { api } from "./server/api/apiRoot"
-import { PostComment } from "./components/post/postcomment";
-import { CommentInput } from "./components/post/CommentInput";
-import { useEffect, useState } from "react";
+import { PostComment } from "./components/post/postcomment"
+import { CommentInput } from "./components/post/CommentInput"
+import { useEffect, useState } from "react"
+import { SchneiderAvatar } from "./components/avatar"
 
 export default function Post() {
-  const params = useParams();
-  const [ newComment, setNewComment ] = useState(false)
-  const [ post, setPost ] = useState(api.posts.getPost(params.post))
+	const params = useParams()
+	const [newComment, setNewComment] = useState(false)
+	const [post, setPost] = useState(api.posts.getPost(params.post))
+	const loggedUser = api.session.getLoggedUser()
+	const [following, setFollowing] = useState(post.author.followers.includes(loggedUser.id))
 
-  useEffect(() => {
-    const thisPost = api.posts.getPost(params.post);
+	useEffect(() => {
+		const thisPost = api.posts.getPost(params.post)
 
-    setPost(thisPost);
-  }, [newComment]);
+		setPost(thisPost)
+	}, [newComment, following])
 
-  return (
-    <div className="p-16">
-      <div className="mx-48">
-        <div className="min-h-42">
-          <h1 className="text-5xl font-bold text-gray-800">{post.title}</h1>
-          <h2 className="mt-6 text-4xl font-semibold text-gray-600">
-            {post.description}
-          </h2>
-          <hr className="my-8 h-px w-[700px] border-0 bg-gradient-to-l from-transparent to-gray-600"></hr>
-          <p className="mt-8 text-xl font-light">{post.body}</p>
-        </div>
-        <hr className="my-8 h-px w-[700px] border-0 bg-gradient-to-l from-transparent to-gray-600"></hr>
+	return (
+		<div className="p-16">
+			<div className="mx-48">
+				<div className="min-h-42">
+					<div className="flex flex-row">
+						<a href={`/user/${post.author.id}`}>
+							<SchneiderAvatar src={post.author.image} />
+						</a>
 
-        <h1 className="text-4xl font-bold text-blue-500">Comentários</h1>
-        <div className="mt-8 w-full max-w-[700px]">
-          <CommentInput
-            postId={post.id}
-            setNewComment={() => setNewComment(!newComment)}
-          />
-          <section id="comments">
-            {post?.comments.map((item, index) => {
-              return (
-                <PostComment
-                  commentId={item.id}
-                  key={`PostCommentKey-${index}`}
-                  name={item.author.name}
-                  content={item.content}
-                  image={item.author.image}
-                  child_comments={item?.childComments}
-                  newComment={() => setNewComment(!newComment)}
-                />
-              );
-            })}
-          </section>
-        </div>
-      </div>
-    </div>
-  );
+						<div className="flex flex-col">
+							<a href={`/user/${post.author.id}`}>
+								<p className="ml-4 text-xl font-semibold text-gray-600">{post.author.name}</p>
+								<p className="ml-4 text-sm text-gray-500">
+									<span className="font-bold">{post.author.followers.length}</span> {post.author.followers.length === 1 ? "seguidor" : "seguidores"}
+								</p>
+							</a>
+						</div>
+						<div className="flex flex-col">
+							{loggedUser.id !== post.author.id && (
+								<button
+									className={`ml-4 mt-2 rounded-md ring-2 ring-schneider-green ${following ? " bg-schneider-green text-white" : "bg-schneider-green/30 text-gray-600"}`}
+									size={"sm"}
+									onClick={() => {
+										try {
+											if (loggedUser.id !== post.author.id) {
+												if (following) api.user.unfollowUser(post.author.id)
+												else api.user.followUser(post.author.id)
+											}
+											setFollowing(!following)
+										} catch (error) {
+											if (error.message === "Usuario não logado") window.location.href = "/login"
+										}
+									}}
+								>
+									{following ? "Seguindo" : "Seguir"}
+								</button>
+							)}
+						</div>
+					</div>
+
+					<h1 className="mt-4 text-5xl font-bold text-gray-800">{post.title}</h1>
+					<h2 className="mt-6 text-4xl font-semibold text-gray-600">{post.description}</h2>
+					<hr className="my-8 h-px w-[700px] border-0 bg-gradient-to-l from-transparent to-gray-600"></hr>
+					<p className="mt-8 text-xl font-light">{post.body}</p>
+				</div>
+				<hr className="my-8 h-px w-[700px] border-0 bg-gradient-to-l from-transparent to-gray-600"></hr>
+				<h1 className="text-4xl font-bold text-blue-500">Comentários</h1>
+				<div className="mt-8 w-full max-w-[700px]">
+					<CommentInput postId={post.id} setNewComment={() => setNewComment(!newComment)} />
+					<section id="comments">
+						{post?.comments.map((item, index) => {
+							return <PostComment commentId={item.id} key={`PostCommentKey-${index}`} name={item.author.name} content={item.content} image={item.author.image} child_comments={item?.childComments} newComment={() => setNewComment(!newComment)} />
+						})}
+					</section>
+				</div>
+			</div>
+		</div>
+	)
 }
