@@ -28,8 +28,8 @@ const users = [
 	},
 	{
 		id: "3422afd7-4108-426e-8cee-6d165545dc2e",
-		name: "Gabriel",
-		email: "gabriel@schneider.com",
+		name: "Suellen Nakamoto",
+		email: "suellenNakamoto@schneider.com",
 		followers: [],
 		image: "https://lh3.googleusercontent.com/a/AGNmyxYwLT_qbHap7Qn_IHQTBkdXK_rMPrC-BVp2UJJa=s96-c",
 		posts: [
@@ -37,7 +37,7 @@ const users = [
 				postId: uuidv4(),
 			},
 		],
-		password: "EuAmoTypescript!!",
+		password: "EuGostoDeTailwind25!",
 	},
 	{
 		id: "355014e7-a3de-443b-b56c-5148077b1040",
