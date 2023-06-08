@@ -6,7 +6,6 @@ function getAllPosts() {
 
 	return posts.map((post) => {
 		const author = api.user.getUser({ userId: post.authorId })
-
 		return { ...post, author }
 	})
 }

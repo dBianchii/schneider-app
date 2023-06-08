@@ -4,6 +4,7 @@ import { PostComment } from "./components/post/postcomment"
 import { CommentInput } from "./components/post/CommentInput"
 import { useEffect, useState } from "react"
 import { SchneiderAvatar } from "./components/avatar"
+import { DangerButton } from "./components/button"
 
 export default function Post() {
 	const params = useParams()
@@ -11,6 +12,7 @@ export default function Post() {
 	const [post, setPost] = useState(api.posts.getPost(params.post))
 	const loggedUser = api.session.getLoggedUser()
 	const [following, setFollowing] = useState(post.author.followers.includes(loggedUser.id))
+	const [showDelete, setShowDelete] = useState(false)
 
 	useEffect(() => {
 		const thisPost = api.posts.getPost(params.post)
@@ -57,8 +59,22 @@ export default function Post() {
 							)}
 						</div>
 					</div>
+					<div className="mt-4 flex flex-row" onMouseOver={() => setShowDelete(true)} onMouseLeave={() => setShowDelete(false)}>
+						<h1 className="text-5xl font-bold text-gray-800">{post.title}</h1>
 
-					<h1 className="mt-4 text-5xl font-bold text-gray-800">{post.title}</h1>
+						{loggedUser.id === post.author.id && showDelete && (
+							<DangerButton
+								size={"sm"}
+								className={"ml-4 mt-4 h-8 bg-red-400"}
+								onClick={() => {
+									api.posts.deletePost(post.id)
+									window.location.href = "/"
+								}}
+							>
+								Deletar
+							</DangerButton>
+						)}
+					</div>
 					<h2 className="mt-6 text-4xl font-semibold text-gray-600">{post.description}</h2>
 					<hr className="my-8 h-px w-[700px] border-0 bg-gradient-to-l from-transparent to-gray-600"></hr>
 					<p className="mt-8 text-xl font-light">{post.body}</p>

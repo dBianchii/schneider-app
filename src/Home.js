@@ -83,7 +83,7 @@ function PostCard({ post }) {
 						</div>
 
 						<div className="flex items-center">
-							<AiOutlineComment className={`ml-4 h-8 w-8 ${user && post.comments ? "text-blue-400" : "text-gray-400 hover:text-blue-400"}`} />
+							<AiOutlineComment className={`ml-4 h-8 w-8 ${user && post.comments.find((x) => x === user.id) ? "text-blue-400" : "text-gray-400 hover:text-blue-400"}`} />
 							<p className={`ml-1 font-bold ${post.comments?.length ? "text-gray-900" : "text-gray-400"}`}>{post.comments?.length ?? 0}</p>
 						</div>
 					</div>
