@@ -6,16 +6,39 @@ export default function SobreOProjeto() {
 	const profiles = [
 		{
 			name: "Gabriel Bianchi",
+			rm: "RM97325",
 			role: <p className="text-center font-semibold">Desenvolvedor</p>,
 			image: gabrielAvatar,
 		},
 		{
 			name: "Enrico Pozzi",
+			rm: "RM97327",
 			role: <p className="text-center font-semibold">Desenvolvedor</p>,
 			image: enricoAvatar,
 		},
 		{
 			name: "Lorenzo",
+			rm: "RM97318",
+			role: (
+				<p className="text-center font-semibold">
+					UX Writing & <br /> Conteúdo Descritivo
+				</p>
+			),
+			image: "https://avatars.githubusercontent.com/u/60052506?v=4",
+		},
+		{
+			name: "João G. Rodriguez",
+			rm: "RM96765",
+			role: (
+				<p className="text-center font-semibold">
+					UX Writing & <br /> Conteúdo Descritivo
+				</p>
+			),
+			image: "https://avatars.githubusercontent.com/u/60052506?v=4",
+		},
+		{
+			name: "Lucas Benedetti",
+			rm: "RM96771",
 			role: (
 				<p className="text-center font-semibold">
 					UX Writing & <br /> Conteúdo Descritivo
@@ -36,16 +59,17 @@ export default function SobreOProjeto() {
 					aliquam ultricies, nunc nisl ultricies arcu, quis ultricies nisl nisl vitae nisl. sed euismod, nisl eget aliquam ultricies, nunc nisl ultricies arcu, quis ultricies nisl nisl vitae nisl. sed euismod, nisl eget aliquam
 				</p>
 			</div>
-			<div className="mt-8 flex flex-col items-center space-y-8 bg-schneider-green/60 py-16">
-				<iframe className="aspect-video h-80" src="https://www.youtube.com/embed/R1FG54FY-18" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+			<div className="mt-6 flex flex-col items-center space-y-8 bg-schneider-green/50 py-16">
+				<iframe className="aspect-video h-80 rounded-xl" src="https://www.youtube.com/embed/R1FG54FY-18" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 			</div>
 			<div className="flex flex-col items-center space-y-8 py-8">
-				<div className="my-4 flex flex-row space-x-24">
+				<div className="my-4 flex flex-row space-x-14">
 					{profiles.map((profile) => (
-						<div className="flex flex-col items-center space-y-1">
+						<div className="flex flex-col items-center">
 							<SchneiderAvatar src={profile.image} size={"3xl"} />
 							<p className="text-lg font-bold text-gray-800">{profile.name}</p>
-							<p className="text-lg text-gray-600">{profile.role}</p>
+							<p className="mt-2 text-lg text-gray-600">{profile.role}</p>
+							<p className="text-sm text-gray-400">{profile.rm}</p>
 						</div>
 					))}
 				</div>
@@ -62,7 +86,6 @@ export default function SobreOProjeto() {
 					<li className="list-disc text-lg text-gray-600">
 						Roteamento de páginas com <span className="font-bold text-schneider-green">React Router DOM</span>
 					</li>
-					<li className="list-disc text-lg text-gray-600">React Icons</li>
 					<li className="list-disc text-lg text-gray-600">
 						Conceitos e utilização de <span className="font-bold text-schneider-green">React Hooks</span> para responsividade
 					</li>
