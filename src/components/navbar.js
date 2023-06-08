@@ -27,19 +27,22 @@ export default function NavBar() {
 	const [open, setOpen] = useState(false)
 
 	const menuItems = [
-		{
-			title: "Profile",
-			icon: <CgProfile className="mr-2 h-4 w-4 text-slate-400" />,
-		},
-		{
-			title: "Log Out",
-			icon: <CiLogout className="mr-2 h-4 w-4 text-slate-600" />,
-			onClick: () => {
-				api.session.logUserOut()
-				window.location.reload()
-			},
-		},
-	]
+    {
+      title: "Profile",
+      icon: <CgProfile className="mr-2 h-4 w-4 text-slate-400" />,
+      onClick: () => {
+        window.location.assign(`/user/${user.id}`);
+      },
+    },
+    {
+      title: "Log Out",
+      icon: <CiLogout className="mr-2 h-4 w-4 text-slate-600" />,
+      onClick: () => {
+        api.session.logUserOut();
+        window.location.reload();
+      },
+    },
+  ];
 
 	return (
 		<nav className="border-gray-200 bg-slate-800">
