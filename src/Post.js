@@ -5,6 +5,8 @@ import { CommentInput } from "./components/post/CommentInput"
 import { useEffect, useState } from "react"
 import { SchneiderAvatar } from "./components/avatar"
 import { DangerButton } from "./components/button"
+import { FaPencilAlt, FaPaperPlane } from "react-icons/fa"
+import { CgClose } from "react-icons/cg"
 
 export default function Post() {
 	const params = useParams()
@@ -12,6 +14,8 @@ export default function Post() {
 	const [post, setPost] = useState(api.posts.getPost(params.post))
 	const loggedUser = api.session.getLoggedUser()
 	const [following, setFollowing] = useState(post.author.followers.includes(loggedUser.id))
+	const [editMode, setEditMode] = useState(false)
+	const [body, setBody] = useState(post.body)
 
 	useEffect(() => {
 		const thisPost = api.posts.getPost(params.post)
@@ -75,8 +79,49 @@ export default function Post() {
 						)}
 					</div>
 					<h2 className="mt-6 text-4xl font-semibold text-gray-600">{post.description}</h2>
-					<hr className="my-8 h-px w-[700px] border-0 bg-gradient-to-l from-transparent to-gray-600"></hr>
-					<p className="mt-8 text-xl font-light">{post.body}</p>
+					<hr className="my-4 h-px w-[700px] border-0 bg-gradient-to-l from-transparent to-gray-600"></hr>
+
+					{editMode ? (
+						<div>
+							<textarea
+								className="h-72 w-full"
+								defaultValue={body}
+								value={body}
+								onChange={(e) => {
+									setBody(e.target.value)
+								}}
+							/>
+							<div className="justify-end">
+								<button
+									className="inline rounded-md p-2 hover:bg-green-300"
+									onClick={() => {
+										setEditMode((prev) => !prev)
+										api.posts.editPost(post.id, { body: body })
+									}}
+								>
+									<FaPaperPlane className="h-6 w-6" />
+								</button>
+								<button
+									className="ml-2 inline rounded-md p-2 hover:bg-gray-300"
+									onClick={() => {
+										setBody(post.body)
+										setEditMode((prev) => !prev)
+									}}
+								>
+									<CgClose size={20} className="h-6 w-6" />
+								</button>
+							</div>
+						</div>
+					) : (
+						<>
+							<p className="mt-2 inline text-xl font-light">{body}</p>
+							{loggedUser.id === post.author.id && (
+								<button className="ml-4 inline rounded-md p-2 hover:bg-gray-300" onClick={() => setEditMode((prev) => !prev)}>
+									<FaPencilAlt className="h-4 w-4" />
+								</button>
+							)}
+						</>
+					)}
 				</div>
 				<hr className="my-8 h-px w-[700px] border-0 bg-gradient-to-l from-transparent to-gray-600"></hr>
 				<h1 className="text-4xl font-bold text-blue-500">Comentários</h1>

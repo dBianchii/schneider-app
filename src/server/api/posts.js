@@ -91,6 +91,18 @@ function getPostsForUser(userId) {
 	return posts.filter((post) => post.authorId === userId)
 }
 
+function editPost(id, { title, description, body }) {
+	const posts = getAllPosts()
+
+	const post = posts.find((post) => post.id === id)
+
+	if (title) post.title = title
+	if (description) post.description = description
+	if (body) post.body = body
+
+	localStorage.setItem("posts", JSON.stringify(posts))
+}
+
 const posts = {
 	getAllPosts,
 	createPost,
@@ -99,5 +111,6 @@ const posts = {
 	deletePost,
 	getPost,
 	getPostsForUser,
+	editPost,
 }
 export default posts
