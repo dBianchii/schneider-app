@@ -1,55 +1,52 @@
 import { SchneiderAvatar } from "./components/avatar"
 import enricoAvatar from "./assets/enrico.JPG"
 import gabrielAvatar from "./assets/Gabriel.jpg"
+import lorenzoAvatar from "./assets/Lorenzo.jpg"
+import lucasAvatar from "./assets/Lucas.jpg"
+import rodriguezAvatar from "./assets/Rodriguez.jpg"
 
-	const profiles = [
-		{
-			name: "Gabriel Bianchi",
-			rm: "RM97325",
-			role: <p className="text-center font-semibold">Desenvolvedor</p>,
-			image: gabrielAvatar,
-		},
-		{
-			name: "Enrico Pozzi",
-			rm: "RM97327",
-			role: <p className="text-center font-semibold">Desenvolvedor</p>,
-			image: enricoAvatar,
-		},
-		{
-			name: "Lorenzo",
-			rm: "RM97318",
-			role: (
-				<p className="text-center font-semibold">
-					UX Writing & <br /> Conteúdo Descritivo
-				</p>
-			),
-			image: "https://avatars.githubusercontent.com/u/60052506?v=4",
-		},
-		{
-			name: "João G. Rodriguez",
-			rm: "RM96765",
-			role: (
-				<p className="text-center font-semibold">
-					UX Writing & <br /> Conteúdo Descritivo
-				</p>
-			),
-			image: "https://avatars.githubusercontent.com/u/60052506?v=4",
-		},
-		{
-			name: "Lucas Benedetti",
-			rm: "RM96771",
-			role: (
-				<p className="text-center font-semibold">
-					UX Writing & <br /> Conteúdo Descritivo
-				</p>
-			),
-			image: "https://avatars.githubusercontent.com/u/60052506?v=4",
-		},
-	]
+const profiles = [
+	{
+		name: "Gabriel Bianchi",
+		rm: "RM97325",
+		role: <p className="text-center font-semibold">Desenvolvedor</p>,
+		image: gabrielAvatar,
+	},
+	{
+		name: "Enrico Pozzi",
+		rm: "RM97327",
+		role: <p className="text-center font-semibold">Desenvolvedor</p>,
+		image: enricoAvatar,
+	},
+	{
+		name: "Lorenzo",
+		rm: "RM97318",
+		role: (
+			<p className="text-center font-semibold">
+				UX Writing & <br /> Conteúdo Descritivo
+			</p>
+		),
+		image: lorenzoAvatar,
+	},
+	{
+		name: "João G. Rodriguez",
+		rm: "RM96765",
+		role: (
+			<p className="text-center font-semibold">
+				UX Writing & <br /> Conteúdo Descritivo
+			</p>
+		),
+		image: rodriguezAvatar,
+	},
+	{
+		name: "Lucas Benedetti",
+		rm: "RM96771",
+		role: <p className="text-center font-semibold">Pitch do vídeo</p>,
+		image: lucasAvatar,
+	},
+]
 
 export default function SobreOProjeto() {
-
-
 	return (
 		<>
 			<div className="mx-52 flex flex-col items-center space-y-8">
@@ -57,7 +54,12 @@ export default function SobreOProjeto() {
 				<hr className="my-8 h-[5px] w-[700px] rounded-full bg-gradient-to-r from-transparent via-schneider-green to-transparent"></hr>
 
 				<div className="text-center text-lg text-gray-600">
-					O propósito do projeto "Schneider Connect" é possibilitar a melhor comunicação entre os colaboradores da <a className="text-blue-700 hover:underline" href="https://www.se.com/br/pt/" >Schneider</a> para que atinjam uma melhor gestão e sustentabilidade dos recursos. Com o Schneider Connect os funcionários poderão interagir e discutir maneiras melhores e mais eficientes de executar o trabalho, assim como lidar com feedbacks.</div>
+					O propósito do projeto "Schneider Connect" é possibilitar a melhor comunicação entre os colaboradores da{" "}
+					<a className="text-blue-700 hover:underline" href="https://www.se.com/br/pt/">
+						Schneider
+					</a>{" "}
+					para que atinjam uma melhor gestão e sustentabilidade dos recursos. Com o Schneider Connect os funcionários poderão interagir e discutir maneiras melhores e mais eficientes de executar o trabalho, assim como lidar com feedbacks.
+				</div>
 			</div>
 			<div className="mt-6 flex flex-col items-center space-y-8 bg-schneider-green/50 py-16">
 				<iframe className="aspect-video h-80 rounded-xl" src="https://www.youtube.com/embed/R1FG54FY-18" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

@@ -73,10 +73,10 @@ export default function Register() {
 				<form className="mt-4 flex w-full flex-col" onSubmit={handleSubmit(onSubmit)}>
 					<EmailInput error={errors?.email} title="Email" register={{ ...register("email") }} />
 					<div className="mt-6">
-						<TextInput error={errors?.name} title={"Nome"} {...register("name")} />
+						<TextInput error={errors?.name} title={"Nome"} register={{ ...register("name") }} />
 					</div>
 					<div className="mt-6">
-						<TextInput error={errors?.image} title={"URL da foto de perfil - opcional"} {...register("image")} />
+						<TextInput error={errors?.image} title={"URL da foto de perfil - opcional"} register={{ ...register("image") }} />
 					</div>
 					<PasswordInput className="mt-6" error={errors?.password} title="Password" register={{ ...register("password") }} />
 
