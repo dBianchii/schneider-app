@@ -27,7 +27,7 @@ export default function Home() {
 			<section className="min-h-[82.5vh] space-y-6 p-10 ">
 				<h4 className="text-4xl font-bold text-gray-800">Últimos posts</h4>
 				<ActionButton onClick={setIsModalOpen}>Criar post</ActionButton>
-				<div className="mx-20 grid grid-cols-3 gap-4">
+				<div className="mx-20 grid  grid-cols-3 gap-4">
 					{paginatedPosts.map((post, i) => (
 						<PostCard key={post.id} post={post} />
 					))}
@@ -49,14 +49,14 @@ function PostCard({ post }) {
 
 	return (
 		<a href={`/post/${post.id}`}>
-			<div className="max-w-sm rounded-lg border border-gray-200 bg-white shadow">
+			<div className="max-w-sm h-60 rounded-lg border border-gray-200 bg-white shadow">
 				{post.image && (
 					<a href={`/post/${post.id}`}>
 						<img className="rounded-t-lg" src={post.image} alt="imagemDoPost" />
 					</a>
 				)}
 
-				<div className="p-5">
+				<div className="p-5 flex flex-col justify-evenly">
 					<h5 className="mb-2 text-xl font-bold tracking-tight text-gray-700">{post.title}</h5>
 					<p className="mb-3 text-base font-normal text-gray-600">{post.description}</p>
 					<a className="mt-4 flex flex-row" href={`/user/${post.authorId}`}>
