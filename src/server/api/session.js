@@ -4,7 +4,7 @@ function getLoggedUser() {
 	const session = JSON.parse(localStorage.getItem("session")) || {}
 	const loggedUserId = session.loggedUserId
 	if (!loggedUserId) {
-		return null
+		return {}
 	}
 
 	const users = api.user.getAllUsers()
