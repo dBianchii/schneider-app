@@ -13,7 +13,7 @@ export default function Post() {
 	const [newComment, setNewComment] = useState(false)
 	const [post, setPost] = useState(api.posts.getPost(params.post))
 	const loggedUser = api.session.getLoggedUser()
-	const [following, setFollowing] = useState(post.author.followers.includes(loggedUser.id))
+	const [following, setFollowing] = useState(post.author.followers.includes(loggedUser?.id))
 	const [editMode, setEditMode] = useState(false)
 	const [body, setBody] = useState(post.body)
 
