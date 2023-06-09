@@ -49,21 +49,21 @@ function PostCard({ post }) {
 
 	return (
 		<a href={`/post/${post.id}`}>
-			<div className="max-w-sm h-60 rounded-lg border border-gray-200 bg-white shadow">
+			<div className="h-60 max-w-sm rounded-lg border border-gray-200 bg-white shadow">
 				{post.image && (
 					<a href={`/post/${post.id}`}>
 						<img className="rounded-t-lg" src={post.image} alt="imagemDoPost" />
 					</a>
 				)}
 
-				<div className="p-5 flex flex-col justify-evenly">
+				<div className="flex flex-col justify-evenly p-5">
 					<h5 className="mb-2 text-xl font-bold tracking-tight text-gray-700">{post.title}</h5>
 					<p className="mb-3 text-base font-normal text-gray-600">{post.description}</p>
 					<a className="mt-4 flex flex-row" href={`/user/${post.authorId}`}>
 						<SchneiderAvatar src={post.author?.image ?? ""} size={"sm"} />
 						<span className="ml-2 text-base text-gray-600">{post.author.name}</span>
 					</a>
-					<div className="z-50 mt-4 flex flex-row">
+					<div className="mt-4 flex flex-row">
 						<div
 							className="mr-2 flex items-center"
 							onClick={(e) => {

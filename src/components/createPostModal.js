@@ -10,7 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup"
 const formSchema = y.object({
 	title: y.string().required("Campo obrigatório"),
 	description: y.string(),
-	body: y.string().required("Campo obrigatório")
+	body: y.string().required("Campo obrigatório"),
 })
 
 export function CreatePostModal({ setIsModalOpen, setPosts }) {
@@ -20,11 +20,10 @@ export function CreatePostModal({ setIsModalOpen, setPosts }) {
 		register,
 		formState: { errors },
 	} = useForm({
-		resolver: yupResolver(formSchema)
+		resolver: yupResolver(formSchema),
 	})
 
 	const onSubmit = (fields) => {
-
 		posts.createPost({ title: fields.title, authorId: user.id, description: fields.description, body: fields.body })
 		setPosts(api.posts.getAllPosts())
 		setIsModalOpen(false)
