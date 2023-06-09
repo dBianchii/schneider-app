@@ -2,7 +2,6 @@ import { SchneiderAvatar } from "./components/avatar"
 import enricoAvatar from "./assets/enrico.JPG"
 import gabrielAvatar from "./assets/Gabriel.jpg"
 
-export default function SobreOProjeto() {
 	const profiles = [
 		{
 			name: "Gabriel Bianchi",
@@ -48,6 +47,9 @@ export default function SobreOProjeto() {
 		},
 	]
 
+export default function SobreOProjeto() {
+
+
 	return (
 		<>
 			<div className="mx-52 flex flex-col items-center space-y-8">
@@ -55,9 +57,7 @@ export default function SobreOProjeto() {
 				<hr className="my-8 h-[5px] w-[700px] rounded-full bg-gradient-to-r from-transparent via-schneider-green to-transparent"></hr>
 
 				<p className="text-center text-lg text-gray-600">
-					lorem ipsum dolor sit amet, consectetur adipiscing elit. sed euismod, nisl eget aliquam ultricies, nunc nisl ultricies arcu, quis ultricies nisl nisl vitae nisl. sed euismod, nisl eget aliquam ultricies, nunc nisl ultricies arcu, quis ultricies nisl nisl vitae nisl. sed euismod, nisl eget
-					aliquam ultricies, nunc nisl ultricies arcu, quis ultricies nisl nisl vitae nisl. sed euismod, nisl eget aliquam ultricies, nunc nisl ultricies arcu, quis ultricies nisl nisl vitae nisl. sed euismod, nisl eget aliquam
-				</p>
+					O propósito do projeto "Schneider Connect" é possibilitar a melhor comunicação entre os colaboradores da <a className="text-blue-700 hover:underline" href="https://www.se.com/br/pt/" >Schneider</a> para que atinjam uma melhor gestão e sustentabilidade dos recursos. Com o Schneider Connect os funcionários poderão interagir e discutir maneiras melhores e mais eficientes de executar o trabalho, assim como lidar com feedbacks.</p>
 			</div>
 			<div className="mt-6 flex flex-col items-center space-y-8 bg-schneider-green/50 py-16">
 				<iframe className="aspect-video h-80 rounded-xl" src="https://www.youtube.com/embed/R1FG54FY-18" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
