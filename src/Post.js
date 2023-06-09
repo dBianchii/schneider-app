@@ -41,13 +41,13 @@ export default function Post() {
 							</a>
 						</div>
 						<div className="flex flex-col">
-							{loggedUser.id !== post.author.id && (
+							{loggedUser?.id !== post.author.id && (
 								<button
 									className={`ml-4 mt-2 rounded-md ring-2 ring-schneider-green ${following ? " bg-schneider-green text-white" : "bg-schneider-green/30 text-gray-600"}`}
 									size={"sm"}
 									onClick={() => {
 										try {
-											if (loggedUser.id !== post.author.id) {
+											if (loggedUser?.id !== post.author.id) {
 												if (following) api.user.unfollowUser(post.author.id)
 												else api.user.followUser(post.author.id)
 											}
@@ -65,7 +65,7 @@ export default function Post() {
 					<div className="mt-4 flex flex-row">
 						<h1 className="text-5xl font-bold text-gray-800">{post.title}</h1>
 
-						{loggedUser.id === post.author.id && (
+						{loggedUser?.id === post.author.id && (
 							<DangerButton
 								size={"sm"}
 								className={"ml-4 mt-4 h-8 bg-red-400"}
@@ -115,7 +115,7 @@ export default function Post() {
 					) : (
 						<>
 							<p className="mt-2 inline text-xl font-light">{body}</p>
-							{loggedUser.id === post.author.id && (
+							{loggedUser?.id === post.author.id && (
 								<button className="ml-4 inline rounded-md p-2 hover:bg-gray-300" onClick={() => setEditMode((prev) => !prev)}>
 									<FaPencilAlt className="h-4 w-4" />
 								</button>
