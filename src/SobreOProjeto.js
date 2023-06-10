@@ -62,7 +62,7 @@ export default function SobreOProjeto() {
 				</div>
 			</div>
 			<div className="mt-6 flex flex-col items-center space-y-8 bg-schneider-green/50 py-16">
-				<iframe className="aspect-video h-80 rounded-xl" src="https://www.youtube.com/embed/R1FG54FY-18" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+				<iframe className="aspect-video h-80 rounded-xl" src="https://www.youtube.com/embed/juItqNtEpAA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 			</div>
 			<div className="flex flex-col items-center space-y-8 py-8">
 				<div className="my-4 flex flex-row space-x-14">
