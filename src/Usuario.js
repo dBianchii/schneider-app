@@ -3,8 +3,10 @@ import { api } from "./server/api/apiRoot"
 import { useParams } from "react-router-dom"
 import { useState } from "react"
 import { PostCard } from "./components/postCard"
+import { ChangeAvatarModal } from "./components/changeAvatarModal"
 
 export default function Usuario() {
+	const [avatarModalState, setAvatarModalState] = useState(false)
 	const params = useParams()
 
 	const user = api.user.getUser({ userId: params.userId })
@@ -22,8 +24,9 @@ export default function Usuario() {
 				))}
 			</div>
 			<div className="w-2/6 p-8">
-				<div className="flex w-24 flex-col">
+				<div className="flex flex-col  items-center w-32">
 					<SchneiderAvatar src={user.image} size={"lg"} />
+					<button onClick={() => setAvatarModalState(true)} className="text-xs text-center px-2 py-1 bg-schneider-green hover:bg-schneider-green/80  text-white font-medium  my-1 rounded-md  " >Alterar imagem</button>
 					<h1 className="mt-2 font-semibold">{user.name}</h1>
 					<p className="text-sm text-gray-500">{user.email}</p>
 					<p className="mt-2 text-sm text-gray-500">
@@ -51,6 +54,9 @@ export default function Usuario() {
 					)}
 				</div>
 			</div>
+			{avatarModalState && (
+				<ChangeAvatarModal setIsModalOpen={(x) => setAvatarModalState(x)} userId={user.id} />
+			)}
 		</div>
 	)
 }

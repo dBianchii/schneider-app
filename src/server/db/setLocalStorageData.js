@@ -17,6 +17,7 @@ const users = [
 		id: "7e233ca7-f1fc-45a3-8a6f-e8977dd53910",
 		name: "João Rodriguez",
 		email: "rodriguez@schneider.com",
+		image: '',
 		followers: [],
 		posts: [
 			{
