@@ -11,6 +11,12 @@ function getUser({ userId }) {
 	return user
 }
 
+function getUserSavedPosts({ userId }) {
+	const userObject = getUser({ userId })
+
+	return userObject.savedPosts
+}
+
 function getAllUsers() {
 	const users = JSON.parse(localStorage.getItem("users")) || []
 	return users
@@ -64,11 +70,32 @@ function unfollowUser(userId) {
 	localStorage.setItem("users", JSON.stringify(users))
 }
 
+function savePostToUser(postId, userId) {
+	const users = getAllUsers()
+	const user = users.find((user) => user.id === userId)
+	user.savedPosts.push(postId)
+
+	return localStorage.setItem("users", JSON.stringify(users))
+}
+
+function removeSavedPost(postId, userId) {
+	const users = getAllUsers()
+	const user = users.find((user) => user.id === userId)
+	const getIndex = user.savedPosts.findIndex((post) => post === postId)
+	user.savedPosts.shift(getIndex)
+
+	return localStorage.setItem("users", JSON.stringify(users))
+
+}
+
 const user = {
 	getUser,
 	getAllUsers,
 	registerUser,
 	followUser,
 	unfollowUser,
+	getUserSavedPosts,
+	savePostToUser,
+	removeSavedPost
 }
 export default user

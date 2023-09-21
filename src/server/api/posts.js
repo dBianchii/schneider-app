@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid"
 import { api } from "../api/apiRoot"
+import session from "../api/session"
 
 function getAllPosts() {
 	let posts = JSON.parse(localStorage.getItem("posts")) || []
@@ -91,6 +92,19 @@ function getPostsForUser(userId) {
 	return posts.filter((post) => post.authorId === userId)
 }
 
+function getSavedPosts(userId) {
+	const user = session.getLoggedUser()
+	const savedPosts = user.savedPosts
+	let savedPostsArray = []
+
+	savedPosts.map((item) => {
+		const post = api.posts.getPost(item)
+		savedPostsArray.push(post)
+	})
+
+	return savedPostsArray
+}
+
 function editPost(id, { title, description, body }) {
 	const posts = getAllPosts()
 
@@ -112,5 +126,6 @@ const posts = {
 	getPost,
 	getPostsForUser,
 	editPost,
+	getSavedPosts
 }
 export default posts

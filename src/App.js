@@ -10,6 +10,7 @@ import Footer from "./components/footer";
 import { useEffect } from "react";
 import { setLocalStorageData } from "./server/db/setLocalStorageData";
 import SobreOProjeto from "./SobreOProjeto";
+import SavedPage from "./Saved";
 
 function App() {
   useEffect(() => {
@@ -37,6 +38,8 @@ function App() {
           <Route path="/sobre" element={<SobreOProjeto />} />
           <Route path="/post/:post" element={<Post />} />
           <Route path="/user/:userId" element={<Usuario />} />
+          <Route path="/user/:userId/saved" element={<SavedPage />} />
+
         </Routes>
         {!routesNavAndFooterNotNeeded.includes(window.location.pathname) && (
           <Footer />

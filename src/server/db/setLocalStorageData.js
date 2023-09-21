@@ -10,6 +10,7 @@ const users = [
 				postId: "6c87dbc4-3e9b-4bad-a49f-20c2088e5404",
 			},
 		],
+		savedPosts: [],
 		password: "EuGostoDeBolo123",
 	},
 	{
@@ -22,6 +23,7 @@ const users = [
 				postId: "cd8b9ef5-7e82-447e-b356-54f6623ff325",
 			},
 		],
+		savedPosts: [],
 		password: "EuAmoReact!",
 	},
 	{
@@ -35,6 +37,7 @@ const users = [
 				postId: "3d11110f-e0b1-47ac-a872-7b974f826ec6",
 			},
 		],
+		savedPosts: [],
 		password: "EuGostoDeTailwind25!",
 	},
 	{
@@ -48,6 +51,7 @@ const users = [
 				postId: "f9e19282-b54a-4e8c-b01f-3926025a16c3",
 			},
 		],
+		savedPosts: [],
 		password: "EuNaoGostoDeBootstrap!23",
 	},
 ]

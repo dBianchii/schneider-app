@@ -3,6 +3,7 @@ import { api } from "../server/api/apiRoot";
 import { useState } from "react";
 import { AiFillHeart, AiOutlineComment, AiOutlineHeart } from "react-icons/ai";
 import { SchneiderAvatar } from "./avatar";
+import { SavePost } from "./savePost";
 
 export function PostCard({ post }) {
   const navigate = useNavigate();
@@ -56,9 +57,8 @@ export function PostCard({ post }) {
                 <AiOutlineHeart className="h-8 w-8 text-gray-400 transition-colors hover:text-red-500/80" />
               )}
               <p
-                className={`ml-1 font-bold ${
-                  user && liked ? "text-gray-900" : "text-gray-400"
-                }`}
+                className={`ml-1 font-bold ${user && liked ? "text-gray-900" : "text-gray-400"
+                  }`}
               >
                 {likes}
               </p>
@@ -66,20 +66,19 @@ export function PostCard({ post }) {
 
             <div className="flex items-center">
               <AiOutlineComment
-                className={`ml-4 h-8 w-8 ${
-                  user && post.comments
-                    ? "text-blue-400"
-                    : "text-gray-400 hover:text-blue-400"
-                }`}
+                className={`ml-4 h-8 w-8 ${user && post.comments
+                  ? "text-blue-400"
+                  : "text-gray-400 hover:text-blue-400"
+                  }`}
               />
               <p
-                className={`ml-1 font-bold ${
-                  post.comments?.length ? "text-gray-900" : "text-gray-400"
-                }`}
+                className={`ml-1 font-bold ${post.comments?.length ? "text-gray-900" : "text-gray-400"
+                  }`}
               >
                 {post.comments?.length ?? 0}
               </p>
             </div>
+
           </div>
         </div>
       </div>
