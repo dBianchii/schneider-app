@@ -13,7 +13,7 @@ export function PostCard({ post }) {
 
   return (
     <a href={`/post/${post.id}`}>
-      <div className="w-96 max-w-sm rounded-lg border border-gray-200 bg-white shadow">
+      <div className="w-96 max-w-sm rounded-lg border border-gray-200 bg-white shadow ">
         {post.image && (
           <a href={`/post/${post.id}`}>
             <img className="rounded-t-lg" src={post.image} alt="imagemDoPost" />
