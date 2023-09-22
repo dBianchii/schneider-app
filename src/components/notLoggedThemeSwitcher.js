@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from "react";
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
-import { BsArrowLeftCircleFill } from "react-icons/bs";
 import { SecondaryButton } from "./button";
 
 const NotLoggedThemeSwitcher = () => {
-  const [open, setOpen] = useState(false);
-
   // Initialize darkMode state with the value from local storage or default to false
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem("darkMode") === "true"

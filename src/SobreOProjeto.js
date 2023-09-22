@@ -50,7 +50,7 @@ export default function SobreOProjeto() {
   return (
     <>
       <div className="mx-52 flex flex-col items-center space-y-8">
-        <h1 className="mt-12 text-4xl font-bold text-gray-800">
+        <h1 className="mt-12 text-4xl font-bold text-gray-800 dark:text-white">
           Bem vindo ao SchneiderConnect!
         </h1>
         <hr className="my-8 h-[5px] w-[700px] rounded-full bg-gradient-to-r from-transparent via-schneider-green to-transparent"></hr>
@@ -85,7 +85,9 @@ export default function SobreOProjeto() {
           {profiles.map((profile, index) => (
             <div key={index} className="flex flex-col items-center">
               <SchneiderAvatar src={profile.image} size={"3xl"} />
-              <p className="text-lg font-bold text-gray-800">{profile.name}</p>
+              <p className="text-lg font-bold text-gray-800 dark:text-white">
+                {profile.name}
+              </p>
               <p className="mt-2 text-lg text-gray-600">{profile.role}</p>
               <p className="text-sm text-gray-400">{profile.rm}</p>
             </div>
