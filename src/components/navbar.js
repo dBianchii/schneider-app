@@ -7,6 +7,9 @@ import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import ThemeSwitcher from "./theme-switcher";
 import { IoBookmark } from "react-icons/io5";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
+import NotLoggedThemeSwitcher from "./notLoggedThemeSwitcher";
+
 export default function NavBar() {
   const location = useLocation();
   const user = api.session.getLoggedUser();
@@ -36,7 +39,7 @@ export default function NavBar() {
       icon: <IoBookmark className="mr-2 h-4 w-4 text-slate-400" />,
       onClick: () => {
         window.location.assign(`/user/${user.id}/saved`);
-      }
+      },
     },
     {
       title: "Log Out",
@@ -67,11 +70,13 @@ export default function NavBar() {
               <li key={i}>
                 <a
                   href={item.href}
-                  className={`${item.hidden && "hidden"
-                    } block rounded py-2 pl-3 pr-4 transition-colors hover:bg-gray-700 hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-schneider-green ${location.pathname === item.href
+                  className={`${
+                    item.hidden && "hidden"
+                  } block rounded py-2 pl-3 pr-4 transition-colors hover:bg-gray-700 hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-schneider-green ${
+                    location.pathname === item.href
                       ? "text-schneider-green"
                       : "text-white"
-                    }`}
+                  }`}
                 >
                   {item.title}
                 </a>
@@ -86,8 +91,9 @@ export default function NavBar() {
                 <SchneiderAvatar src={user.image ?? ""} />
               </div>
               <div
-                className={`absolute right-0 mt-2 w-[150px] rounded-md bg-white shadow-md ${!open && "hidden"
-                  }`}
+                className={`absolute right-0 mt-2 w-[150px] rounded-md bg-white shadow-md ${
+                  !open && "hidden"
+                }`}
               >
                 {menuItems.map((item, i) => (
                   <div
@@ -118,6 +124,7 @@ export default function NavBar() {
               >
                 Cadastrar
               </SecondaryButton>
+              <NotLoggedThemeSwitcher />
             </div>
           )}
         </div>
