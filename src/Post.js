@@ -26,7 +26,7 @@ export default function Post() {
   }, [newComment, following, params.post]);
 
   return (
-    <div className="p-16">
+    <div className="p-16 dark:text-white">
       <div className="mx-48">
         <div className="min-h-42">
           <div className="flex flex-row">
@@ -36,10 +36,10 @@ export default function Post() {
 
             <div className="flex flex-col">
               <a href={`/user/${post.author.id}`}>
-                <p className="ml-4 text-xl font-semibold text-gray-600">
+                <p className="ml-4 text-xl font-semibold text-gray-600 dark:text-white">
                   {post.author.name}
                 </p>
-                <p className="ml-4 text-sm text-gray-500">
+                <p className="ml-4 text-sm text-gray-500 dark:text-gray-300">
                   <span className="font-bold">
                     {post.author.followers.length}
                   </span>{" "}
@@ -52,10 +52,10 @@ export default function Post() {
             <div className="flex flex-col">
               {loggedUser?.id !== post.author.id && (
                 <button
-                  className={`ml-4 mt-2 rounded-md ring-2 ring-schneider-green ${
+                  className={`ml-4 mt-2 rounded-md px-1 ring-2 ring-schneider-green ${
                     following
                       ? " bg-schneider-green text-white"
-                      : "bg-schneider-green/30 text-gray-600"
+                      : "bg-schneider-green/30 text-white"
                   }`}
                   size={"sm"}
                   onClick={() => {
@@ -77,7 +77,9 @@ export default function Post() {
             </div>
           </div>
           <div className="mt-4 flex flex-row">
-            <h1 className="text-5xl font-bold text-gray-800">{post.title}</h1>
+            <h1 className="text-5xl font-bold text-gray-800 dark:text-white">
+              {post.title}
+            </h1>
 
             {loggedUser?.id === post.author.id && (
               <DangerButton
@@ -92,7 +94,7 @@ export default function Post() {
               </DangerButton>
             )}
           </div>
-          <h2 className="mt-6 text-4xl font-semibold text-gray-600">
+          <h2 className="mt-6 text-4xl font-semibold text-gray-600 dark:text-gray-300">
             {post.description}
           </h2>
           <hr className="my-4 h-px w-[700px] border-0 bg-gradient-to-l from-transparent to-gray-600"></hr>

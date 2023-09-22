@@ -1,7 +1,7 @@
 export function TextareaInput({ title, register, height, placeholder, error }) {
   return (
     <div className="relative flex w-full flex-col gap-2 pb-2">
-      <p className="font-medium">{title}</p>
+      <p className="font-medium dark:text-white">{title}</p>
       <textarea
         {...register}
         style={{

@@ -22,6 +22,7 @@ export default function Home() {
   const paginatedPosts = posts.slice(start, end);
 
   const totalPages = Math.ceil(posts.length / perPage);
+  const session = api.session.getLoggedUser();
 
   return (
     <>
@@ -29,7 +30,9 @@ export default function Home() {
         <h4 className="text-4xl font-bold text-gray-800 dark:text-white">
           Últimos posts
         </h4>
-        <ActionButton onClick={setIsModalOpen}>Criar post</ActionButton>
+        {session && (
+          <ActionButton onClick={setIsModalOpen}>Criar post</ActionButton>
+        )}
         <div className="mx-20 grid  grid-cols-3 gap-4">
           {paginatedPosts.map((post, i) => (
             <PostCard key={post.id} post={post} />
@@ -97,10 +100,11 @@ function PostCard({ post }) {
                 <AiOutlineHeart className="h-8 w-8 text-gray-400 transition-colors hover:text-red-500/80" />
               )}
               <p
-                className={`ml-1 font-bold ${user && liked
-                  ? "text-gray-900 dark:text-gray-200"
-                  : "text-gray-400"
-                  }`}
+                className={`ml-1 font-bold ${
+                  user && liked
+                    ? "text-gray-900 dark:text-gray-200"
+                    : "text-gray-400"
+                }`}
               >
                 {likes}
               </p>
@@ -108,20 +112,22 @@ function PostCard({ post }) {
 
             <div className="flex items-center">
               <AiOutlineComment
-                className={`ml-4 h-8 w-8 ${user && post.comments.find((x) => x === user.id)
-                  ? "text-blue-400"
-                  : "text-gray-400 hover:text-blue-400"
-                  }`}
+                className={`ml-4 h-8 w-8 ${
+                  user && post.comments.find((x) => x === user.id)
+                    ? "text-blue-400"
+                    : "text-gray-400 hover:text-blue-400"
+                }`}
               />
               <p
-                className={`ml-1 font-bold ${post.comments?.length ? "text-gray-900" : "text-gray-400"
-                  }`}
+                className={`ml-1 font-bold ${
+                  post.comments?.length ? "text-gray-900" : "text-gray-400"
+                }`}
               >
                 {post.comments?.length ?? 0}
               </p>
             </div>
             <div className="flex items-center">
-              <SavePost postId={post.id} />
+              {user && <SavePost postId={post.id} />}
             </div>
           </div>
         </div>
@@ -143,8 +149,9 @@ function Pagination({ currentPage, totalPages }) {
         <li key={i}>
           <a
             href={getPageLink(i)}
-            className={`${currentPage === 0 && "pointer-events-none text-gray-500"
-              } ml-0 border border-gray-300 bg-white px-3 py-2 leading-tight text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700`}
+            className={`${
+              currentPage === 0 && "pointer-events-none text-gray-500"
+            } ml-0 border border-gray-300 bg-white px-3 py-2 leading-tight text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700`}
           >
             {i}
             {currentPage === i && <span> (atual)</span>}
@@ -163,9 +170,10 @@ function Pagination({ currentPage, totalPages }) {
           <a
             href={getPageLink(currentPage - 1)}
             tabIndex="-1"
-            className={`${currentPage === 0 &&
+            className={`${
+              currentPage === 0 &&
               "pointer-events-none cursor-not-allowed text-gray-500 transition-colors"
-              } ml-0 rounded-l-lg border border-gray-300 bg-white px-3 py-2 leading-tight hover:bg-gray-100 disabled:opacity-75`}
+            } ml-0 rounded-l-lg border border-gray-300 bg-white px-3 py-2 leading-tight hover:bg-gray-100 disabled:opacity-75`}
           >
             Anterior
           </a>
@@ -175,9 +183,10 @@ function Pagination({ currentPage, totalPages }) {
           <a
             href={getPageLink(currentPage + 1)}
             tabIndex="-1"
-            className={`${currentPage === totalPages - 1 &&
+            className={`${
+              currentPage === totalPages - 1 &&
               "pointer-events-none text-gray-500 transition-colors"
-              } ml-0 rounded-r-lg border border-gray-300 bg-white px-3 py-2 leading-tight hover:bg-gray-100 disabled:opacity-75`}
+            } ml-0 rounded-r-lg border border-gray-300 bg-white px-3 py-2 leading-tight hover:bg-gray-100 disabled:opacity-75`}
           >
             Próximo
           </a>

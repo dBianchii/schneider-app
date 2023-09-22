@@ -55,7 +55,7 @@ export default function SobreOProjeto() {
         </h1>
         <hr className="my-8 h-[5px] w-[700px] rounded-full bg-gradient-to-r from-transparent via-schneider-green to-transparent"></hr>
 
-        <div className="text-center text-lg text-gray-600">
+        <div className="text-center text-lg text-gray-600 dark:text-gray-200">
           O propósito do projeto "Schneider Connect" é possibilitar a melhor
           comunicação entre os colaboradores da{" "}
           <a
@@ -92,41 +92,41 @@ export default function SobreOProjeto() {
           ))}
         </div>
       </div>
-      <div className="space-y-8 bg-gray-200 px-52 py-8">
-        <h1 className="text-4xl font-bold text-gray-600 ">
+      <div className="space-y-8 bg-gray-200 px-52 py-8 dark:bg-gray-500 dark:text-white">
+        <h1 className="text-4xl font-bold ">
           Recursos e tecnologias do curso que foram utilizadas
         </h1>
         <ul>
-          <li className="list-disc text-lg text-gray-600">
+          <li className="list-disc text-lg ">
             Projeto inicializado usando{" "}
             <span className="font-bold text-schneider-green">
               Create-React-App
             </span>
           </li>
-          <li className="list-disc text-lg text-gray-600">
+          <li className="list-disc text-lg">
             Conceitos de{" "}
             <span className="font-bold text-schneider-green">CSS</span>{" "}
             aplicados utilizando TailwindCSS - uma alternativa ao bootstrap
           </li>
-          <li className="list-disc text-lg text-gray-600">
+          <li className="list-disc text-lg">
             Roteamento de páginas com{" "}
             <span className="font-bold text-schneider-green">
               React Router DOM
             </span>
           </li>
-          <li className="list-disc text-lg text-gray-600">
+          <li className="list-disc text-lg">
             Conceitos e utilização de{" "}
             <span className="font-bold text-schneider-green">React Hooks</span>{" "}
             para responsividade
           </li>
-          <li className="list-disc text-lg text-gray-600">
+          <li className="list-disc text-lg">
             Validação de formulários com{" "}
             <span className="font-bold text-schneider-green">
               React Hook Form
             </span>{" "}
             e <span className="font-bold text-schneider-green">Yup</span>
           </li>
-          <li className="list-disc text-lg text-gray-600">
+          <li className="list-disc text-lg">
             Tratamento de dados utilizando funções{" "}
             <span className="font-bold text-schneider-green">Javascript</span>
           </li>
