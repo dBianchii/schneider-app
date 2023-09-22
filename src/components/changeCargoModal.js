@@ -3,12 +3,12 @@ import * as y from "yup";
 import { api } from "../server/api/apiRoot";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { CgClose } from "react-icons/cg";
-import { TextInput } from "../components/textInput";
+import { TextInput } from "./textInput";
 const formSchema = y.object({
-  image_url: y.string().required("Campo obrigatório"),
+  cargo: y.string().required("Campo obrigatório"),
 });
 
-export function ChangeAvatarModal({ setIsModalOpen, userId }) {
+export function ChangeCargoModal({ setIsModalOpen, userId }) {
   const {
     handleSubmit,
     register,
@@ -20,7 +20,7 @@ export function ChangeAvatarModal({ setIsModalOpen, userId }) {
   const onSubmit = (fields) => {
     const users = api.user.getAllUsers();
     const user = users.find((user) => user.id === userId);
-    user.image = fields.image_url;
+    user.cargo = fields.cargo;
 
     localStorage.setItem("users", JSON.stringify(users));
 
@@ -31,7 +31,7 @@ export function ChangeAvatarModal({ setIsModalOpen, userId }) {
     <main className="fixed top-0 flex h-screen w-screen items-center justify-center bg-black/20 transition-colors">
       <div className="flex  w-[28rem] flex-col rounded-md border bg-gray-50 p-6">
         <div className="flex items-center justify-between">
-          <p className="text-2xl font-semibold">Alterar imagem</p>
+          <p className="text-2xl font-semibold">Alterar Cargo</p>
           <div
             className="transiton-colors cursor-pointer rounded-full p-3 text-gray-800 duration-100 hover:bg-gray-200"
             onClick={() => setIsModalOpen(false)}
@@ -46,8 +46,8 @@ export function ChangeAvatarModal({ setIsModalOpen, userId }) {
         >
           <TextInput
             error={errors?.title}
-            register={{ ...register("image_url") }}
-            title="URL da imagem"
+            register={{ ...register("cargo") }}
+            title="Qual é a sua função?"
           />
 
           <button
