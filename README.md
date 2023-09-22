@@ -9,7 +9,7 @@ Projeto inicializado com Create-React-App para o trabalho de encerramento do pri
 - Salvamento de dados em local storage
 
 LORENZO FERREIRA - RM97318
-LUCAS BENEDETTI - RM96771
+LUCAS BENEDETTI - RM96671
 ENRICO POZZI - RM97327
 JOÃO GABRIEL RODRIGUEZ - RM96765
 GABRIEL BIANCHI - RM97325
