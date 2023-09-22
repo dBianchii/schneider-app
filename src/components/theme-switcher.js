@@ -2,12 +2,26 @@ import React, { useState, useEffect } from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { BsArrowLeftCircleFill } from "react-icons/bs";
-import { useDarkMode } from "./darkmode-provider";
 
 const ThemeSwitcher = () => {
   const [open, setOpen] = useState(false);
 
-  const { darkMode, toggleDarkMode } = useDarkMode();
+  // Initialize darkMode state with the value from local storage or default to false
+  const [darkMode, setDarkMode] = useState(
+    localStorage.getItem("darkMode") === "true"
+  );
+
+  // Add an effect to toggle the dark mode class on document.documentElement
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+    // Store the dark mode state in local storage
+    localStorage.setItem("darkMode", darkMode);
+  }, [darkMode]);
 
   return (
     <DropdownMenu.Root onOpenChange={setOpen}>
@@ -36,7 +50,7 @@ const ThemeSwitcher = () => {
         >
           <DropdownMenu.CheckboxItem
             checked={darkMode}
-            onCheckedChange={() => toggleDarkMode()}
+            onCheckedChange={() => setDarkMode(true)}
             className="flex flex-row rounded-md bg-white p-1 hover:bg-gray-400 hover:text-white"
           >
             <MdDarkMode className="mr-2 h-4 w-4 self-center text-slate-400" />
@@ -44,7 +58,7 @@ const ThemeSwitcher = () => {
           </DropdownMenu.CheckboxItem>
           <DropdownMenu.CheckboxItem
             checked={!darkMode}
-            onCheckedChange={() => toggleDarkMode()}
+            onCheckedChange={() => setDarkMode(false)}
             className="flex flex-row rounded-md bg-white p-1 hover:bg-gray-400 hover:text-white"
           >
             <MdLightMode className="mr-2 h-4 w-4 self-center text-slate-400" />
